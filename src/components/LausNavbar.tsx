@@ -35,20 +35,20 @@ export default function LausNavbar({ lang, onLangChange, variant = 'transparent'
       ].join(' ')}
       style={!isLight && !scrolled ? { backgroundColor: 'transparent' } : undefined}
     >
-      <Link to="/" className="flex items-baseline gap-1">
-        <span className={`font-heading text-2xl font-semibold tracking-wide ${textClass}`}>LAUS</span>
-        <span className={`font-body text-[10px] font-medium uppercase tracking-[0.2em] leading-tight ${isLight ? 'text-muted-foreground' : 'text-primary-foreground/80'}`}>
+      <Link to="/" className="flex items-stretch gap-1">
+        <span className={`flex items-center font-heading text-2xl font-semibold tracking-wide ${textClass}`}>LAUS</span>
+        <span className={`flex items-center font-body text-[10px] font-medium uppercase tracking-[0.2em] leading-tight ${isLight ? 'text-muted-foreground' : 'text-primary-foreground/80'}`}>
           Asset<br />Management
         </span>
       </Link>
 
       <div className="hidden md:flex items-center gap-8">
         {[
-          { label: tr.nav.about, to: '/#about' },
-          { label: tr.nav.activities, to: '/#activities' },
-          { label: tr.nav.portfolio, to: '/#portfolio' },
+          { label: tr.nav.about, to: `/about?lang=${lang}` },
+          { label: tr.nav.activities, to: `/activities?lang=${lang}` },
+          { label: tr.nav.portfolio, to: `/our-portfolio?lang=${lang}` },
           { label: tr.nav.news, to: '/#news' },
-          { label: tr.nav.contact, to: '/#contact' },
+          { label: tr.nav.contact, to: `/contact?lang=${lang}` },
         ].map((item) => (
           <Link
             key={item.to}

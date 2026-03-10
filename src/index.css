@@ -5,7 +5,8 @@
 @tailwind utilities;
 
 @layer base {
-  html { scroll-behavior: smooth; }
+  /* Pas de scroll-behavior: smooth global : les pages séparées doivent s’ouvrir en haut instantanément.
+     Le smooth est réservé aux liens intrapage (#section), géré par ScrollToHash. */
   :root {
     --background: 50 7% 95%;
     --foreground: 220 10% 13%;
@@ -76,14 +77,19 @@
 }
 
 @layer base {
-  html { scroll-behavior: smooth; }
   * {
     @apply border-border;
   }
 
+  html, body {
+    min-height: 100%;
+  }
   body {
     @apply bg-background text-foreground;
     font-family: var(--font-body);
+    /* Fallback si les variables CSS ne sont pas encore appliquées */
+    background-color: hsl(50 7% 95%);
+    color: hsl(220 10% 13%);
     font-size: 16px;
     line-height: 1.6;
     -webkit-font-smoothing: antialiased;

@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 200">
+  <rect width="400" height="200" fill="#f1f5f9" stroke="#94a3b8" stroke-width="2" rx="8"/>
+  <text x="200" y="85" text-anchor="middle" font-family="system-ui, sans-serif" font-size="14" fill="#64748b">Image d'exemple pour les actualités</text>
+  <text x="200" y="110" text-anchor="middle" font-family="system-ui, sans-serif" font-size="12" fill="#94a3b8">Déposer vos images ici :</text>
+  <text x="200" y="135" text-anchor="middle" font-family="monospace" font-size="13" fill="#0f172a">public/news/</text>
+  <text x="200" y="165" text-anchor="middle" font-family="system-ui, sans-serif" font-size="11" fill="#94a3b8">’ dans le .md : image: /news/nom-fichier.jpg</text>
+</svg>

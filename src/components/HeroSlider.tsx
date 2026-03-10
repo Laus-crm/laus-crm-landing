@@ -1,4 +1,5 @@
 import { useState, useCallback, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 import heroParis from '@/assets/hero-paris.png';
 import heroLondon from '@/assets/hero-london.jpg';
@@ -46,16 +47,16 @@ export default function HeroSlider({ lang }: HeroSliderProps) {
         </div>
       ))}
 
-      <div className="absolute bottom-[20%] left-8 md:left-16 max-w-2xl z-10 animate-in fade-in-0 slide-in-from-bottom-6 duration-700">
-        <h1 className="font-heading text-4xl md:text-5xl font-semibold text-primary-foreground leading-tight">
-          <em>{tr.hero.tagline}</em>
+      <div className="absolute bottom-[20%] left-8 md:left-16 max-w-2xl z-10 animate-in fade-in-0 slide-in-from-bottom-6 duration-700 font-heading">
+        <h1 className="text-4xl md:text-5xl font-semibold text-primary-foreground leading-tight tracking-wide italic">
+          {tr.hero.tagline}
         </h1>
-        <a
-          href="#about"
-          className="inline-block mt-8 font-body text-sm text-primary-foreground/90 border-b border-primary-foreground/50 pb-1 hover:border-primary-foreground transition-colors duration-200 animate-in fade-in-0 slide-in-from-bottom-4 duration-700 delay-150"
+        <Link
+          to={`/about?lang=${lang}`}
+          className="inline-block mt-8 text-sm text-primary-foreground/90 border-b border-primary-foreground/50 pb-1 hover:border-primary-foreground transition-colors duration-200 animate-in fade-in-0 slide-in-from-bottom-4 duration-700 delay-150"
         >
           {tr.hero.cta}
-        </a>
+        </Link>
       </div>
 
       {/* Manual arrows */}

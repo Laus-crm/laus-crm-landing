@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import { type Lang, t } from '@/lib/i18n';
 import Reveal from '@/components/Reveal';
 
@@ -15,9 +16,9 @@ export default function LausFooter({ lang }: FooterProps) {
           {/* Logo */}
           <div className="md:col-span-3">
             <Reveal>
-              <div className="flex items-baseline gap-1 mb-8">
-                <span className="font-heading text-2xl font-semibold text-foreground tracking-wide">LAUS</span>
-                <span className="font-body text-[10px] font-medium uppercase tracking-[0.2em] text-muted-foreground leading-tight">
+              <div className="flex items-stretch gap-1 mb-8">
+                <span className="flex items-center font-heading text-2xl font-semibold text-foreground tracking-wide">LAUS</span>
+                <span className="flex items-center font-body text-[10px] font-medium uppercase tracking-[0.2em] text-muted-foreground leading-tight">
                   Asset<br />Management
                 </span>
               </div>
@@ -37,18 +38,30 @@ export default function LausFooter({ lang }: FooterProps) {
             <Reveal delayMs={120}>
               <p className="font-heading text-lg font-semibold text-foreground mb-2">{tr.footer.contactLabel}</p>
               <p className="font-body text-sm text-muted-foreground">
-                <a href="mailto:g.bussiere@laus-am.com" className="text-primary hover:underline">
-                  g.bussiere@laus-am.com
+                <a href={`mailto:${tr.footer.email}`} className="text-primary hover:underline">
+                  {tr.footer.email}
                 </a>
               </p>
               <p className="font-body text-sm text-muted-foreground mt-1">
-                +33 (0) 6 84 07 82 93
+                <a href={`tel:${tr.footer.phone.replace(/\s/g, '').replace('(0)', '')}`} className="hover:text-primary transition-colors">
+                  {tr.footer.phone}
+                </a>
               </p>
             </Reveal>
           </div>
 
+          {/* Legal */}
+          <div className="md:col-span-2">
+            <Reveal delayMs={140}>
+              <p className="font-heading text-lg font-semibold text-foreground mb-2">{tr.footer.legalMentions}</p>
+              <Link to={`/legal?lang=${lang}`} className="font-body text-sm text-muted-foreground hover:text-primary transition-colors">
+                {lang === 'fr' ? 'Voir les mentions légales' : 'View legal notice'}
+              </Link>
+            </Reveal>
+          </div>
+
           {/* Social */}
-          <div className="md:col-span-3 flex items-start justify-end">
+          <div className="md:col-span-1 flex items-start justify-end">
             <Reveal delayMs={160}>
               <a
                 href="https://www.linkedin.com/company/laus-asset-management/"
@@ -67,9 +80,22 @@ export default function LausFooter({ lang }: FooterProps) {
 
         <div className="section-divider mt-12 mb-6" />
         <Reveal delayMs={80}>
-          <p className="font-body text-xs text-muted-foreground">
-            © {new Date().getFullYear()} LAUS Asset Management. All rights reserved.
-          </p>
+          <div className="font-body text-xs text-muted-foreground space-y-2">
+            <p>© {new Date().getFullYear()} LAUS Asset Management. All rights reserved.</p>
+            <p className="flex flex-wrap gap-x-4 gap-y-1">
+              <Link to={`/legal?lang=${lang}`} className="hover:text-foreground transition-colors">
+                {tr.footer.legalMentions}
+              </Link>
+              <span>·</span>
+              <Link to={`/legal?lang=${lang}#regulatory`} className="hover:text-foreground transition-colors">
+                {tr.footer.regulatoryInfo}
+              </Link>
+              <span>·</span>
+              <Link to={`/legal?lang=${lang}#data-protection`} className="hover:text-foreground transition-colors">
+                {tr.footer.dataProtection}
+              </Link>
+            </p>
+          </div>
         </Reveal>
       </div>
     </footer>

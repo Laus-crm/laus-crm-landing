@@ -3,6 +3,8 @@ import { getNewsBySlug } from '@/data/news';
 import type { Lang } from '@/lib/i18n';
 import LausNavbar from '@/components/LausNavbar';
 import LausFooter from '@/components/LausFooter';
+import PageEnter from '@/components/PageEnter';
+import Reveal from '@/components/Reveal';
 import { useState, useMemo } from 'react';
 
 const NewsDetail = () => {
@@ -29,6 +31,7 @@ const NewsDetail = () => {
     <div className="min-h-screen bg-background">
       <LausNavbar lang={lang} onLangChange={setLang} variant="light" />
       <article className="container-site pt-32 pb-24" style={{ paddingTop: 'calc(var(--section-spacing) + 80px)', paddingBottom: 'var(--section-spacing)' }}>
+        <PageEnter>
         <Link to="/#news" className="font-body text-sm text-muted-foreground hover:text-foreground mb-8 inline-block">
           ← {lang === 'fr' ? 'Retour aux actualités' : 'Back to news'}
         </Link>
@@ -40,12 +43,20 @@ const NewsDetail = () => {
               className="w-full h-full object-cover"
             />
           </div>
-          <p className="text-label text-muted-foreground mb-2">{item.date}</p>
-          <h1 className="heading-display mb-8">{title}</h1>
-          <div className="font-body text-base text-foreground leading-relaxed whitespace-pre-line">
-            {content}
-          </div>
+          <Reveal>
+            <p className="text-label text-muted-foreground mb-2">{item.date}</p>
+          </Reveal>
+          <Reveal delayMs={80}>
+            <h1 className="heading-display mb-8">{title}</h1>
+          </Reveal>
+          <Reveal delayMs={120}>
+            <div
+              className="font-body text-base text-foreground leading-relaxed whitespace-pre-line [&_strong]:font-semibold [&_em]:italic [&_u]:underline"
+              dangerouslySetInnerHTML={{ __html: content.replace(/\n/g, '<br />') }}
+            />
+          </Reveal>
         </div>
+        </PageEnter>
       </article>
       <LausFooter lang={lang} />
     </div>

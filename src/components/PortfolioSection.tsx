@@ -1,4 +1,5 @@
-import parisPortfolio from '@/assets/paris-portfolio.jpg';
+import { Link } from 'react-router-dom';
+import parisPortfolio from '@/assets/paris-portfolio.png';
 import { type Lang, t } from '@/lib/i18n';
 import { Button } from '@/components/ui/button';
 import Reveal from '@/components/Reveal';
@@ -47,8 +48,8 @@ export default function PortfolioSection({ lang }: PortfolioSectionProps) {
           </div>
 
           <Reveal delayMs={140}>
-            <Button variant="default" className="mt-12 w-fit">
-              {tr.portfolio.cta}
+            <Button variant="default" className="mt-12 w-fit" asChild>
+              <Link to={`/our-portfolio?lang=${lang}`}>{tr.portfolio.cta}</Link>
             </Button>
           </Reveal>
         </div>

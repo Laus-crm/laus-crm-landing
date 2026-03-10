@@ -7,10 +7,12 @@ export default function ScrollToHash() {
   useEffect(() => {
     const hash = location.hash;
     if (!hash) {
+      // Page séparée : aller en haut immédiatement, sans smooth (réservé aux ancres intrapage)
       window.scrollTo({ top: 0, left: 0, behavior: 'auto' });
       return;
     }
 
+    // Lien intrapage (#section) : scroll smooth vers l’ancre
     const id = decodeURIComponent(hash.replace('#', ''));
     const el = document.getElementById(id);
 
