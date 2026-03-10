@@ -19,21 +19,24 @@ const Contact = () => {
       <LausNavbar lang={lang} onLangChange={setLang} variant="light" />
 
       {/* Full-height block: Paris image as background, contact info on the left */}
-      <section className="relative min-h-[calc(100vh-80px)] flex items-center">
+      <section className="relative min-h-[calc(100vh-80px)] flex flex-col">
         <div
           className="absolute inset-0 bg-cover bg-center"
           style={{ backgroundImage: `url(${parisPortfolio})` }}
           aria-hidden
         />
         <div className="absolute inset-0 bg-background/75 backdrop-blur-[2px]" aria-hidden />
-        <div className="relative z-10 container-site pt-32 pb-16">
-          <PageEnter>
+        {/* Lien retour: même position que Nos activités (container-site pt-32) */}
+        <div className="relative z-10 container-site pt-32 pb-0">
           <Link
             to="/"
             className="font-body text-sm text-muted-foreground hover:text-foreground mb-10 inline-block"
           >
             ← {tr.legal.backToHome}
           </Link>
+        </div>
+        <div className="relative z-10 flex-1 flex items-center container-site pb-16">
+          <PageEnter>
           <div className="max-w-md">
             <h1 className="font-heading text-4xl md:text-5xl font-semibold tracking-wide text-foreground mb-2">
               {tr.contact.city}
@@ -60,6 +63,7 @@ const Contact = () => {
             </Reveal>
           </div>
           </PageEnter>
+        </div>
         </div>
       </section>
 

@@ -37,10 +37,10 @@ const Activities = () => {
           ← {tr.legal.backToHome}
         </Link>
         <Reveal>
-          <h1 className="heading-display mb-8">{tr.activities.title}</h1>
+          <h1 className="heading-display mb-8 text-center">{tr.activities.title}</h1>
         </Reveal>
         <Reveal delayMs={80}>
-          <p className="font-body text-base md:text-lg text-foreground leading-relaxed max-w-2xl">
+          <p className="font-body text-base md:text-lg text-foreground leading-relaxed max-w-2xl mx-auto text-center">
             {tr.activities.pageIntro}
           </p>
         </Reveal>

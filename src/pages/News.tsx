@@ -33,7 +33,7 @@ const News = () => {
               <p className="font-body text-base text-muted-foreground">{tr.news.emptyMessage}</p>
             </Reveal>
           ) : (
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-10">
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-5 md:gap-6">
               {newsItems.map((item, index) => (
                 <Reveal key={item.id} delayMs={index * 60}>
                   <Link
@@ -41,7 +41,7 @@ const News = () => {
                     className="block group"
                   >
                     <article>
-                      <div className="aspect-[4/3] overflow-hidden mb-4">
+                      <div className="aspect-[4/3] overflow-hidden mb-3 rounded-sm">
                         <img
                           src={item.image.startsWith('http') ? item.image : `${import.meta.env.BASE_URL.replace(/\/$/, '')}${item.image}`}
                           alt={lang === 'fr' ? item.titleFr : item.titleEn}
@@ -49,8 +49,8 @@ const News = () => {
                           loading="lazy"
                         />
                       </div>
-                      <p className="text-label mb-2 pl-3">{item.date}</p>
-                      <h2 className="font-heading text-xl font-semibold text-foreground group-hover:text-primary transition-colors">
+                      <p className="text-label mb-1 pl-2 text-xs">{item.date}</p>
+                      <h2 className="font-heading text-base font-semibold text-foreground group-hover:text-primary transition-colors line-clamp-2">
                         {lang === 'fr' ? item.titleFr : item.titleEn}
                       </h2>
                     </article>

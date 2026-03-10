@@ -31,8 +31,8 @@ export default function HeroSlider({ lang }: HeroSliderProps) {
       {slides.map((slide, i) => (
         <div
           key={slide.city}
-          className="absolute inset-0 transition-opacity duration-[1200ms] ease-in-out"
-          style={{ opacity: i === current ? 1 : 0 }}
+          className="absolute inset-0 transition-opacity ease-in-out"
+          style={{ opacity: i === current ? 1 : 0, transitionDuration: '2s' }}
         >
           <img
             src={slide.image}
@@ -45,16 +45,16 @@ export default function HeroSlider({ lang }: HeroSliderProps) {
         </div>
       ))}
 
-      <div className="absolute bottom-[20%] left-8 md:left-16 max-w-3xl z-10 animate-in fade-in-0 slide-in-from-bottom-6 duration-700 font-body">
-        <h1 className="text-2xl md:text-3xl font-semibold text-primary-foreground leading-tight tracking-wide">
-          {tr.hero.tagline}
-        </h1>
-        <Link
-          to={`/about?lang=${lang}`}
-          className="inline-block mt-8 text-sm text-primary-foreground/90 border-b border-primary-foreground/50 pb-1 hover:border-primary-foreground transition-colors duration-200 animate-in fade-in-0 slide-in-from-bottom-4 duration-700 delay-150"
-        >
-          {tr.hero.cta}
-        </Link>
+      <div className="absolute bottom-[20%] left-8 md:left-16 max-w-4xl z-10 font-body animate-in fade-in-0 slide-in-from-bottom-6 duration-700">
+            <h1 className="text-2xl md:text-3xl font-semibold text-primary-foreground leading-tight tracking-wide">
+              {tr.hero.tagline}
+            </h1>
+            <Link
+              to={`/about?lang=${lang}`}
+              className="inline-block mt-8 text-sm text-primary-foreground/90 border-b border-primary-foreground/50 pb-1 hover:border-primary-foreground transition-colors duration-200 animate-in fade-in-0 slide-in-from-bottom-4 duration-700 delay-150"
+            >
+              {tr.hero.cta}
+            </Link>
       </div>
     </section>
   );

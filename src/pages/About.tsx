@@ -129,8 +129,8 @@ const About = () => {
                 className="w-full h-full object-cover"
               />
             </button>
-            <p className="text-label mt-4 mb-2">Ghislain Bussière</p>
-            <p className="font-body text-sm text-muted-foreground">{tr.about.role}</p>
+            <p className="font-heading text-3xl font-semibold tracking-wide text-foreground mt-4 mb-2">Ghislain Bussière</p>
+            <p className="font-body text-xs font-medium uppercase tracking-[0.2em] leading-tight text-muted-foreground">{tr.about.role}</p>
           </Reveal>
           <div className="md:col-span-8 text-center md:text-left">
             <Reveal delayMs={120}>
@@ -189,6 +189,14 @@ const About = () => {
               <div className="font-body text-lg md:text-xl lg:text-2xl text-neutral-200 leading-relaxed whitespace-pre-line">
                 {tr.about.bioFull}
               </div>
+              <button
+                type="button"
+                onClick={() => setTeamBioOpen(false)}
+                className="mt-10 font-body text-sm text-neutral-400 hover:text-white transition-colors inline-flex items-center gap-2"
+              >
+                <span>←</span>
+                {tr.legal.backToHome}
+              </button>
             </div>
           </div>
         </div>
