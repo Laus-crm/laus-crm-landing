@@ -23,11 +23,12 @@ const NAV_ITEMS = (tr: ReturnType<typeof t>, lang: Lang) => [
 export default function LausNavbar({ lang, onLangChange, variant = 'transparent' }: NavbarProps) {
   const tr = t(lang);
   const isLight = variant === 'light';
-  const textClass = isLight ? 'text-foreground' : 'text-primary-foreground';
-  const textMutedClass = isLight ? 'text-muted-foreground' : 'text-primary-foreground/90';
-  const borderClass = isLight ? 'border-border' : 'border-primary-foreground/30';
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
+  const isNavbarSolid = isLight || scrolled;
+  const textClass = isNavbarSolid ? 'text-foreground' : 'text-primary-foreground';
+  const textMutedClass = isNavbarSolid ? 'text-muted-foreground' : 'text-primary-foreground/90';
+  const borderClass = isNavbarSolid ? 'border-border' : 'border-primary-foreground/30';
 
   useEffect(() => {
     if (isLight) return;
@@ -44,14 +45,13 @@ export default function LausNavbar({ lang, onLangChange, variant = 'transparent'
       className={[
         'fixed top-0 left-0 right-0 z-50 flex items-center justify-between px-6 py-5 md:px-8',
         'transition-colors duration-300',
-        isLight ? 'bg-background border-b border-border' : '',
-        !isLight && scrolled ? 'bg-foreground/70 backdrop-blur-md' : '',
+        isLight || scrolled ? 'bg-white border-b border-border' : '',
       ].join(' ')}
       style={!isLight && !scrolled ? { backgroundColor: 'transparent' } : undefined}
     >
-      <Link to="/" className="flex items-stretch gap-1">
-        <span className={`flex items-center font-heading text-2xl font-semibold tracking-wide ${textClass}`}>LAUS</span>
-        <span className={`flex items-center font-body text-[10px] font-medium uppercase tracking-[0.2em] leading-tight ${isLight ? 'text-muted-foreground' : 'text-primary-foreground/80'}`}>
+      <Link to="/" className="flex items-stretch gap-1.5">
+        <span className={`flex items-center font-heading text-3xl font-semibold tracking-wide ${textClass}`}>LAUS</span>
+        <span className={`flex items-center font-body text-xs font-medium uppercase tracking-[0.2em] leading-tight ${isNavbarSolid ? 'text-muted-foreground' : 'text-primary-foreground/80'}`}>
           Asset<br />Management
         </span>
       </Link>

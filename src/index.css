@@ -51,6 +51,7 @@
     --font-body: 'Inter', system-ui, sans-serif;
 
     --section-spacing: 120px;
+    --section-spacing-tight: 64px;
   }
 
   .dark {

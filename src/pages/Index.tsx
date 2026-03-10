@@ -16,7 +16,7 @@ const Index = () => {
     <div className="min-h-screen bg-background">
       <LausNavbar lang={lang} onLangChange={setLang} />
       <HeroSlider lang={lang} />
-      <section id="activities" className="container-site" style={{ paddingTop: 'var(--section-spacing)', paddingBottom: 'var(--section-spacing)' }}>
+      <section id="activities" className="container-site" style={{ paddingTop: 'var(--section-spacing-tight)', paddingBottom: 'var(--section-spacing-tight)' }}>
         <div className="section-divider mb-16" />
         <Reveal>
           <h2 className="heading-display mb-8">{tr.activities.title}</h2>
@@ -30,7 +30,7 @@ const Index = () => {
           </Link>
         </Reveal>
       </section>
-      <section id="portfolio" className="container-site" style={{ paddingTop: 'var(--section-spacing)', paddingBottom: 'var(--section-spacing)' }}>
+      <section id="portfolio" className="container-site" style={{ paddingTop: 'var(--section-spacing-tight)', paddingBottom: 'var(--section-spacing-tight)' }}>
         <div className="section-divider mb-16" />
         <Reveal>
           <h2 className="heading-display mb-8">{tr.portfolio.title}</h2>

@@ -19,7 +19,7 @@ export default function NewsSlider({ lang }: NewsSliderProps) {
   const next = () => setOffset((o) => Math.min(maxOffset, o + 1));
 
   return (
-    <section id="news" className="container-site" style={{ paddingTop: 'var(--section-spacing)', paddingBottom: 'var(--section-spacing)' }}>
+    <section id="news" className="container-site" style={{ paddingTop: 'var(--section-spacing-tight)', paddingBottom: 'var(--section-spacing-tight)' }}>
       <div className="section-divider mb-16" />
 
       <Reveal className="flex items-center justify-between mb-12">

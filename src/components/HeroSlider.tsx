@@ -1,18 +1,16 @@
 import { useState, useCallback, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
-import heroParis from '@/assets/hero-paris.png';
-import heroLondon from '@/assets/hero-london.jpg';
-import heroFrankfurt from '@/assets/hero-frankfurt.png';
 import { type Lang, t } from '@/lib/i18n';
 
+const base = import.meta.env.BASE_URL;
 const slides = [
-  { image: heroParis, city: 'Paris' },
-  { image: heroLondon, city: 'London' },
-  { image: heroFrankfurt, city: 'Frankfurt' },
+  { image: `${base}hero/hero-paris.png`, city: 'Paris' },
+  { image: `${base}hero/hero-london.png`, city: 'London' },
+  { image: `${base}hero/hero-frankfurt.png`, city: 'Frankfurt' },
 ];
 
-const AUTO_ADVANCE_MS = 5000;
+const AUTO_ADVANCE_MS = 9000;
 
 interface HeroSliderProps {
   lang: Lang;
@@ -42,6 +40,8 @@ export default function HeroSlider({ lang }: HeroSliderProps) {
             src={slide.image}
             alt={slide.city}
             className="w-full h-full object-cover"
+            fetchPriority="high"
+            decoding="async"
           />
           <div className="absolute inset-0 bg-foreground/40" />
         </div>

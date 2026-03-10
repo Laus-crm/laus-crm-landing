@@ -16,12 +16,12 @@ export default function LausFooter({ lang }: FooterProps) {
           {/* Logo */}
           <div className="md:col-span-3">
             <Reveal>
-              <div className="flex items-stretch gap-1 mb-8">
-                <span className="flex items-center font-heading text-2xl font-semibold text-foreground tracking-wide">LAUS</span>
-                <span className="flex items-center font-body text-[10px] font-medium uppercase tracking-[0.2em] text-muted-foreground leading-tight">
+              <Link to="/" className="flex items-stretch gap-1.5 mb-8 inline-flex">
+                <span className="flex items-center font-heading text-3xl font-semibold text-foreground tracking-wide">LAUS</span>
+                <span className="flex items-center font-body text-xs font-medium uppercase tracking-[0.2em] text-muted-foreground leading-tight">
                   Asset<br />Management
                 </span>
-              </div>
+              </Link>
             </Reveal>
           </div>
 
@@ -38,7 +38,7 @@ export default function LausFooter({ lang }: FooterProps) {
             <Reveal delayMs={120}>
               <p className="font-heading text-lg font-semibold text-foreground mb-2">{tr.footer.contactLabel}</p>
               <p className="font-body text-sm text-muted-foreground">
-                <a href={`mailto:${tr.footer.email}`} className="text-primary hover:underline">
+                <a href={`mailto:${tr.footer.email}`} className="text-muted-foreground hover:underline">
                   {tr.footer.email}
                 </a>
               </p>
