@@ -1,5 +1,14 @@
 import { useState } from 'react';
 import { type Lang, t } from '@/lib/i18n';
+import adviseImg from '@/assets/advise.png';
+import manageImg from '@/assets/manage.png';
+import transactImg from '@/assets/transact.png';
+
+const activityImages = {
+  advise: adviseImg,
+  manage: manageImg,
+  transact: transactImg,
+} as const;
 
 interface ActivitiesSectionProps {
   lang: Lang;
@@ -38,10 +47,19 @@ export default function ActivitiesSection({ lang }: ActivitiesSectionProps) {
         ))}
       </div>
 
-      <div key={active} className="animate-fade-in max-w-2xl">
-        <p className="font-body text-base text-foreground leading-relaxed">
-          {tr.activities[active].content}
-        </p>
+      <div key={active} className="animate-fade-in grid grid-cols-1 md:grid-cols-12 gap-12 items-start">
+        <div className="md:col-span-5 aspect-[4/3] overflow-hidden">
+          <img
+            src={activityImages[active]}
+            alt={tr.activities[active].title}
+            className="w-full h-full object-cover"
+          />
+        </div>
+        <div className="md:col-span-7">
+          <p className="font-body text-base text-foreground leading-relaxed">
+            {tr.activities[active].content}
+          </p>
+        </div>
       </div>
     </section>
   );

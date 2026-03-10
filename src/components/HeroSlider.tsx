@@ -1,8 +1,8 @@
-import { useState, useCallback } from 'react';
+import { useState, useCallback, useEffect } from 'react';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
-import heroParis from '@/assets/hero-paris.jpg';
+import heroParis from '@/assets/hero-paris.png';
 import heroLondon from '@/assets/hero-london.jpg';
-import heroFrankfurt from '@/assets/hero-frankfurt.jpg';
+import heroFrankfurt from '@/assets/hero-frankfurt.png';
 import { type Lang, t } from '@/lib/i18n';
 
 const slides = [
@@ -10,6 +10,8 @@ const slides = [
   { image: heroLondon, city: 'London' },
   { image: heroFrankfurt, city: 'Frankfurt' },
 ];
+
+const AUTO_ADVANCE_MS = 5000;
 
 interface HeroSliderProps {
   lang: Lang;
@@ -21,6 +23,11 @@ export default function HeroSlider({ lang }: HeroSliderProps) {
 
   const prev = useCallback(() => setCurrent((c) => (c - 1 + slides.length) % slides.length), []);
   const next = useCallback(() => setCurrent((c) => (c + 1) % slides.length), []);
+
+  useEffect(() => {
+    const timer = setInterval(next, AUTO_ADVANCE_MS);
+    return () => clearInterval(timer);
+  }, [next]);
 
   return (
     <section className="relative w-full h-screen overflow-hidden">

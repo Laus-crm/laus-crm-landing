@@ -1,17 +1,8 @@
 import { useState } from 'react';
+import { Link } from 'react-router-dom';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
-import news1 from '@/assets/news-1.jpg';
-import news2 from '@/assets/news-2.jpg';
-import news3 from '@/assets/news-3.jpg';
-import news4 from '@/assets/news-4.jpg';
+import { newsItems } from '@/data/news';
 import { type Lang, t } from '@/lib/i18n';
-
-const newsItems = [
-  { image: news1, titleFr: 'Ouverture du nouveau complexe hôtelier à Paris', titleEn: 'Opening of new hotel complex in Paris', date: '15 Janvier 2025' },
-  { image: news2, titleFr: 'Acquisition stratégique dans le centre de Londres', titleEn: 'Strategic acquisition in central London', date: '3 Décembre 2024' },
-  { image: news3, titleFr: 'Rénovation majeure d\'un hôtel historique à Lyon', titleEn: 'Major renovation of a historic hotel in Lyon', date: '18 Octobre 2024' },
-  { image: news4, titleFr: 'LAUS présent au MIPIM 2024 à Cannes', titleEn: 'LAUS at MIPIM 2024 in Cannes', date: '12 Mars 2024' },
-];
 
 interface NewsSliderProps {
   lang: Lang;
@@ -57,24 +48,27 @@ export default function NewsSlider({ lang }: NewsSliderProps) {
           className="flex gap-6 transition-transform duration-500 ease-out"
           style={{ transform: `translateX(-${offset * (100 / visibleCount)}%)` }}
         >
-          {newsItems.map((item, i) => (
-            <article
-              key={i}
-              className="flex-shrink-0 w-full md:w-[calc(33.333%-16px)]"
+          {newsItems.map((item) => (
+            <Link
+              key={item.id}
+              to={`/news/${item.slug}?lang=${lang}`}
+              className="flex-shrink-0 w-full md:w-[calc(33.333%-16px)] block group"
             >
-              <div className="aspect-[4/3] overflow-hidden mb-4">
-                <img
-                  src={item.image}
-                  alt={lang === 'fr' ? item.titleFr : item.titleEn}
-                  className="w-full h-full object-cover"
-                  loading="lazy"
-                />
-              </div>
-              <p className="text-label mb-2">{item.date}</p>
-              <h3 className="font-heading text-xl font-semibold text-foreground">
-                {lang === 'fr' ? item.titleFr : item.titleEn}
-              </h3>
-            </article>
+              <article>
+                <div className="aspect-[4/3] overflow-hidden mb-4">
+                  <img
+                    src={item.image}
+                    alt={lang === 'fr' ? item.titleFr : item.titleEn}
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                    loading="lazy"
+                  />
+                </div>
+                <p className="text-label mb-2">{item.date}</p>
+                <h3 className="font-heading text-xl font-semibold text-foreground group-hover:text-primary transition-colors">
+                  {lang === 'fr' ? item.titleFr : item.titleEn}
+                </h3>
+              </article>
+            </Link>
           ))}
         </div>
       </div>

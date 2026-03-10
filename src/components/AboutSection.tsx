@@ -1,4 +1,5 @@
 import { type Lang, t } from '@/lib/i18n';
+import ghislainPhoto from '@/assets/ghislain-bussiere.png';
 
 interface AboutSectionProps {
   lang: Lang;
@@ -12,7 +13,14 @@ export default function AboutSection({ lang }: AboutSectionProps) {
       <h2 className="heading-display mb-16">{tr.about.title}</h2>
 
       <div className="grid grid-cols-1 md:grid-cols-12 gap-12">
-        <div className="md:col-span-4">
+        <div className="md:col-span-4 space-y-4">
+          <div className="aspect-[3/4] max-w-xs overflow-hidden">
+            <img
+              src={ghislainPhoto}
+              alt="Ghislain Bussière"
+              className="w-full h-full object-cover"
+            />
+          </div>
           <p className="text-label mb-2">Ghislain Bussière</p>
           <p className="font-body text-sm text-muted-foreground">{tr.about.role}</p>
         </div>

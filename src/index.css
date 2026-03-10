@@ -5,6 +5,7 @@
 @tailwind utilities;
 
 @layer base {
+  html { scroll-behavior: auto !important; }
   :root {
     --background: 50 7% 95%;
     --foreground: 220 10% 13%;
@@ -75,6 +76,7 @@
 }
 
 @layer base {
+  html { scroll-behavior: auto !important; }
   * {
     @apply border-border;
   }
