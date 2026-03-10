@@ -12,8 +12,8 @@
         var search = window.location.search || '';
         var hash = window.location.hash || '';
 
-        // Adjust this if your repo name changes
-        var base = '/';
+        // App root: sous-path GitHub Pages ou racine (domaine perso)
+        var base = pathname.indexOf('/laus-crm-landing') === 0 ? '/laus-crm-landing/' : '/';
 
         // Save full path so index.html can restore it
         sessionStorage.setItem('gh_pages_redirect', pathname + search + hash);

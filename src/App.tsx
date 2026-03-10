@@ -16,12 +16,18 @@ import NotFound from "./pages/NotFound.tsx";
 
 const queryClient = new QueryClient();
 
+// Même build pour github.io/laus-crm-landing/ et domaine perso : basename au runtime
+function getBasename(): string {
+  const p = typeof window !== "undefined" ? window.location.pathname : "";
+  return p.startsWith("/laus-crm-landing") ? "/laus-crm-landing" : "";
+}
+
 const App = () => (
   <QueryClientProvider client={queryClient}>
     <TooltipProvider>
       <Toaster />
       <Sonner />
-      <BrowserRouter basename={import.meta.env.BASE_URL}>
+      <BrowserRouter basename={getBasename()}>
         <ScrollToHash />
         <Routes>
           <Route path="/" element={<Index />} />
