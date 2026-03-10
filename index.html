@@ -13,6 +13,21 @@
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:site" content="@Lovable" />
     <meta name="twitter:image" content="https://lovable.dev/opengraph-image-p98pqg.png" />
+
+    <!-- GitHub Pages SPA fallback (works with BrowserRouter) -->
+    <script>
+      (function () {
+        var redirect = sessionStorage.getItem('gh_pages_redirect');
+        if (!redirect) return;
+        sessionStorage.removeItem('gh_pages_redirect');
+        try {
+          var url = new URL(redirect, window.location.origin);
+          window.history.replaceState(null, '', url.pathname + url.search + url.hash);
+        } catch (e) {
+          // no-op
+        }
+      })();
+    </script>
   </head>
 
   <body>

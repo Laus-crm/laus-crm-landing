@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Redirecting…</title>
+    <script>
+      (function () {
+        // GitHub Pages serves 404.html for unknown routes.
+        // We store the intended URL then redirect to the app root.
+        var pathname = window.location.pathname;
+        var search = window.location.search || '';
+        var hash = window.location.hash || '';
+
+        // Adjust this if your repo name changes
+        var base = '/laus-crm-landing/';
+
+        // Save full path so index.html can restore it
+        sessionStorage.setItem('gh_pages_redirect', pathname + search + hash);
+
+        // Go to app root (served by index.html)
+        window.location.replace(base);
+      })();
+    </script>
+  </head>
+  <body></body>
+</html>
