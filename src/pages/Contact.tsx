@@ -64,7 +64,6 @@ const Contact = () => {
           </div>
           </PageEnter>
         </div>
-        </div>
       </section>
 
       <LausFooter lang={lang} />
