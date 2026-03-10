@@ -1,5 +1,6 @@
 import { type Lang, t } from '@/lib/i18n';
 import { Link } from 'react-router-dom';
+import { useEffect, useState } from 'react';
 
 interface NavbarProps {
   lang: Lang;
@@ -14,11 +15,25 @@ export default function LausNavbar({ lang, onLangChange, variant = 'transparent'
   const textClass = isLight ? 'text-foreground' : 'text-primary-foreground';
   const textMutedClass = isLight ? 'text-muted-foreground' : 'text-primary-foreground/90';
   const borderClass = isLight ? 'border-border' : 'border-primary-foreground/30';
+  const [scrolled, setScrolled] = useState(false);
+
+  useEffect(() => {
+    if (isLight) return;
+    const onScroll = () => setScrolled(window.scrollY > 10);
+    onScroll();
+    window.addEventListener('scroll', onScroll, { passive: true });
+    return () => window.removeEventListener('scroll', onScroll);
+  }, [isLight]);
 
   return (
     <nav
-      className={`fixed top-0 left-0 right-0 z-50 flex items-center justify-between px-8 py-5 ${isLight ? 'bg-background border-b border-border' : ''}`}
-      style={isLight ? undefined : { backgroundColor: 'transparent' }}
+      className={[
+        'fixed top-0 left-0 right-0 z-50 flex items-center justify-between px-8 py-5',
+        'transition-colors duration-300',
+        isLight ? 'bg-background border-b border-border' : '',
+        !isLight && scrolled ? 'bg-foreground/70 backdrop-blur-md' : '',
+      ].join(' ')}
+      style={!isLight && !scrolled ? { backgroundColor: 'transparent' } : undefined}
     >
       <Link to="/" className="flex items-baseline gap-1">
         <span className={`font-heading text-2xl font-semibold tracking-wide ${textClass}`}>LAUS</span>

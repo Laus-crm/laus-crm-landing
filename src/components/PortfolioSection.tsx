@@ -1,6 +1,7 @@
 import parisPortfolio from '@/assets/paris-portfolio.jpg';
 import { type Lang, t } from '@/lib/i18n';
 import { Button } from '@/components/ui/button';
+import Reveal from '@/components/Reveal';
 
 interface PortfolioSectionProps {
   lang: Lang;
@@ -19,31 +20,37 @@ export default function PortfolioSection({ lang }: PortfolioSectionProps) {
     <section id="portfolio" style={{ paddingTop: 'var(--section-spacing)', paddingBottom: 'var(--section-spacing)' }}>
       <div className="container-site">
         <div className="section-divider mb-16" />
-        <h2 className="heading-display mb-16">{tr.portfolio.title}</h2>
+        <Reveal>
+          <h2 className="heading-display mb-16">{tr.portfolio.title}</h2>
+        </Reveal>
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2">
-        <div className="aspect-[4/5] md:aspect-auto">
+        <Reveal className="aspect-[4/5] md:aspect-auto">
           <img
             src={parisPortfolio}
             alt="Paris real estate"
             className="w-full h-full object-cover"
           />
-        </div>
+        </Reveal>
 
         <div className="bg-background flex flex-col justify-center px-8 md:px-16 py-16">
           <div className="space-y-12">
             {stats.map((stat) => (
-              <div key={stat.label}>
-                <p className="font-heading text-4xl font-semibold text-foreground">{stat.value}</p>
-                <p className="font-body text-sm text-muted-foreground mt-1">{stat.label}</p>
-              </div>
+              <Reveal key={stat.label} delayMs={80}>
+                <div>
+                  <p className="font-heading text-4xl font-semibold text-foreground">{stat.value}</p>
+                  <p className="font-body text-sm text-muted-foreground mt-1">{stat.label}</p>
+                </div>
+              </Reveal>
             ))}
           </div>
 
-          <Button variant="default" className="mt-12 w-fit">
-            {tr.portfolio.cta}
-          </Button>
+          <Reveal delayMs={140}>
+            <Button variant="default" className="mt-12 w-fit">
+              {tr.portfolio.cta}
+            </Button>
+          </Reveal>
         </div>
       </div>
     </section>

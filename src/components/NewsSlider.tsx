@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 import { newsItems } from '@/data/news';
 import { type Lang, t } from '@/lib/i18n';
+import Reveal from '@/components/Reveal';
 
 interface NewsSliderProps {
   lang: Lang;
@@ -21,7 +22,7 @@ export default function NewsSlider({ lang }: NewsSliderProps) {
     <section id="news" className="container-site" style={{ paddingTop: 'var(--section-spacing)', paddingBottom: 'var(--section-spacing)' }}>
       <div className="section-divider mb-16" />
 
-      <div className="flex items-center justify-between mb-12">
+      <Reveal className="flex items-center justify-between mb-12">
         <h2 className="heading-display">{tr.news.title}</h2>
         <div className="flex gap-2">
           <button
@@ -41,7 +42,7 @@ export default function NewsSlider({ lang }: NewsSliderProps) {
             <ChevronRight size={24} />
           </button>
         </div>
-      </div>
+      </Reveal>
 
       <div className="overflow-hidden">
         <div
@@ -64,9 +65,11 @@ export default function NewsSlider({ lang }: NewsSliderProps) {
                   />
                 </div>
                 <p className="text-label mb-2">{item.date}</p>
-                <h3 className="font-heading text-xl font-semibold text-foreground group-hover:text-primary transition-colors">
-                  {lang === 'fr' ? item.titleFr : item.titleEn}
-                </h3>
+                <Reveal delayMs={60}>
+                  <h3 className="font-heading text-xl font-semibold text-foreground group-hover:text-primary transition-colors">
+                    {lang === 'fr' ? item.titleFr : item.titleEn}
+                  </h3>
+                </Reveal>
               </article>
             </Link>
           ))}

@@ -46,13 +46,13 @@ export default function HeroSlider({ lang }: HeroSliderProps) {
         </div>
       ))}
 
-      <div className="absolute bottom-[20%] left-8 md:left-16 max-w-2xl z-10">
+      <div className="absolute bottom-[20%] left-8 md:left-16 max-w-2xl z-10 animate-in fade-in-0 slide-in-from-bottom-6 duration-700">
         <h1 className="font-heading text-4xl md:text-5xl font-semibold text-primary-foreground leading-tight">
           <em>{tr.hero.tagline}</em>
         </h1>
         <a
           href="#about"
-          className="inline-block mt-8 font-body text-sm text-primary-foreground/90 border-b border-primary-foreground/50 pb-1 hover:border-primary-foreground transition-colors duration-200"
+          className="inline-block mt-8 font-body text-sm text-primary-foreground/90 border-b border-primary-foreground/50 pb-1 hover:border-primary-foreground transition-colors duration-200 animate-in fade-in-0 slide-in-from-bottom-4 duration-700 delay-150"
         >
           {tr.hero.cta}
         </a>

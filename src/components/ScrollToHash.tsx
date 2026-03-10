@@ -16,8 +16,7 @@ export default function ScrollToHash() {
 
     if (!el) return;
 
-    // Use instant scroll (no smooth)
-    el.scrollIntoView({ behavior: 'auto', block: 'start' });
+    el.scrollIntoView({ behavior: 'smooth', block: 'start' });
   }, [location.pathname, location.hash]);
 
   return null;
