@@ -5,6 +5,7 @@ import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import ScrollToHash from "@/components/ScrollToHash";
 import Index from "./pages/Index.tsx";
+import News from "./pages/News.tsx";
 import NewsDetail from "./pages/NewsDetail.tsx";
 import About from "./pages/About.tsx";
 import Activities from "./pages/Activities.tsx";
@@ -26,6 +27,7 @@ const App = () => (
           <Route path="/" element={<Index />} />
           <Route path="/about" element={<About />} />
           <Route path="/activities" element={<Activities />} />
+          <Route path="/news" element={<News />} />
           <Route path="/news/:slug" element={<NewsDetail />} />
           <Route path="/our-portfolio" element={<OurPortfolio />} />
           <Route path="/contact" element={<Contact />} />

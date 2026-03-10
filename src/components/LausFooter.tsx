@@ -17,7 +17,7 @@ export default function LausFooter({ lang }: FooterProps) {
           <div className="md:col-span-3">
             <Reveal>
               <Link to="/" className="flex items-stretch gap-1.5 mb-8 inline-flex">
-                <span className="flex items-center font-heading text-3xl font-semibold text-foreground tracking-wide">LAUS</span>
+                <span className="flex items-center font-heading text-3xl font-semibold text-muted-foreground tracking-wide">LAUS</span>
                 <span className="flex items-center font-body text-xs font-medium uppercase tracking-[0.2em] text-muted-foreground leading-tight">
                   Asset<br />Management
                 </span>
@@ -29,7 +29,7 @@ export default function LausFooter({ lang }: FooterProps) {
           <div className="md:col-span-3">
             <Reveal delayMs={80}>
               <p className="font-heading text-lg font-semibold text-foreground mb-2">{tr.footer.address}</p>
-              <p className="font-body text-sm text-muted-foreground">{tr.footer.addressLine}</p>
+              <p className="font-body text-sm text-muted-foreground whitespace-pre-line">{tr.footer.addressLine}</p>
             </Reveal>
           </div>
 
@@ -54,8 +54,8 @@ export default function LausFooter({ lang }: FooterProps) {
           <div className="md:col-span-2">
             <Reveal delayMs={140}>
               <p className="font-heading text-lg font-semibold text-foreground mb-2">{tr.footer.legalMentions}</p>
-              <Link to={`/legal?lang=${lang}`} className="font-body text-sm text-muted-foreground hover:text-primary transition-colors">
-                {lang === 'fr' ? 'Voir les mentions légales' : 'View legal notice'}
+              <Link to={`/legal?lang=${lang}`} className="font-body text-sm text-muted-foreground hover:text-primary transition-colors whitespace-nowrap">
+                {tr.footer.viewLegal}
               </Link>
             </Reveal>
           </div>
@@ -81,7 +81,7 @@ export default function LausFooter({ lang }: FooterProps) {
         <div className="section-divider mt-12 mb-6" />
         <Reveal delayMs={80}>
           <div className="font-body text-xs text-muted-foreground space-y-2">
-            <p>© {new Date().getFullYear()} LAUS Asset Management. All rights reserved.</p>
+            <p>© {new Date().getFullYear()} LAUS Asset Management. {tr.footer.copyright}</p>
             <p className="flex flex-wrap gap-x-4 gap-y-1">
               <Link to={`/legal?lang=${lang}`} className="hover:text-foreground transition-colors">
                 {tr.footer.legalMentions}

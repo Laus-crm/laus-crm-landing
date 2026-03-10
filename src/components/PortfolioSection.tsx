@@ -30,7 +30,7 @@ export default function PortfolioSection({ lang }: PortfolioSectionProps) {
         <Reveal className="aspect-[4/5] md:aspect-auto">
           <img
             src={parisPortfolio}
-            alt="Paris real estate"
+            alt={tr.portfolio.imageAlt}
             className="w-full h-full object-cover"
           />
         </Reveal>

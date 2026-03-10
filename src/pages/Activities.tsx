@@ -34,7 +34,7 @@ const Activities = () => {
           to="/"
           className="font-body text-sm text-muted-foreground hover:text-foreground mb-10 inline-block"
         >
-          ← {lang === 'fr' ? "Retour à l'accueil" : 'Back to home'}
+          ← {tr.legal.backToHome}
         </Link>
         <Reveal>
           <h1 className="heading-display mb-8">{tr.activities.title}</h1>
@@ -46,40 +46,44 @@ const Activities = () => {
         </Reveal>
       </section>
 
-      {/* Activity blocks: image + title + content (SFO strategy blocks style) */}
+      {/* Activity blocks: 3 columns on one line (image, title, line, segments label, segment, content) */}
       <section className="container-site pb-24">
-        {activityKeys.map((key, index) => {
-          const imageFirst = index % 2 === 0;
-          return (
-            <div key={key} className="border-t border-border first:border-t-0">
-              <div className="grid grid-cols-1 md:grid-cols-12 gap-10 md:gap-16 py-16 md:py-24 items-start">
-                <div className={imageFirst ? 'md:col-span-5' : 'order-2 md:order-none md:col-span-5 md:col-start-8'}>
-                  <Reveal>
-                    <div className="aspect-[4/3] overflow-hidden">
-                      <img
-                        src={activityImages[key]}
-                        alt={tr.activities[key].title}
-                        className="w-full h-full object-cover"
-                      />
-                    </div>
-                  </Reveal>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-0">
+          {activityKeys.map((key, index) => (
+            <Reveal key={key} delayMs={index * 80} className="flex flex-col">
+              <div
+                className={`flex flex-col border-border transition-transform duration-200 ease-out hover:-translate-y-1.5 ${index > 0 ? 'border-t md:border-t-0 md:border-l md:pl-8' : ''} ${index < 2 ? 'md:pr-8' : ''} py-8 md:py-10`}
+              >
+                {/* Image: fixed height so all three columns have identical dimensions; object-cover crops sides to fill */}
+                <div className="w-full h-[200px] sm:h-[240px] md:h-[220px] lg:h-[260px] overflow-hidden mb-6 bg-muted">
+                  <img
+                    src={activityImages[key]}
+                    alt={tr.activities[key].title}
+                    className="w-full h-full object-cover object-center"
+                  />
                 </div>
-                <div className={imageFirst ? 'md:col-span-7 md:col-start-6' : 'order-1 md:order-none md:col-span-7'}>
-                  <Reveal>
-                    <h2 className="font-heading text-2xl font-semibold tracking-wide text-foreground mb-6">
-                      {tr.activities[key].title}
-                    </h2>
-                  </Reveal>
-                  <Reveal delayMs={80}>
-                    <p className="font-body text-base text-foreground leading-relaxed">
-                      {tr.activities[key].content}
-                    </p>
-                  </Reveal>
-                </div>
+                {/* Title */}
+                <h2 className="font-heading text-3xl md:text-4xl font-semibold text-foreground tracking-wide mb-3">
+                  {tr.activities[key].title}
+                </h2>
+                {/* Thin horizontal line */}
+                <div className="w-12 h-px bg-border mb-4" aria-hidden />
+                {/* Subtitle: segments label */}
+                <p className="font-body text-sm font-medium uppercase tracking-[0.15em] text-muted-foreground mb-1">
+                  {tr.activities.segmentsLabel}
+                </p>
+                {/* Segment name */}
+                <p className="font-body text-base font-semibold uppercase tracking-wide text-foreground mb-4">
+                  {tr.activities[key].segment}
+                </p>
+                {/* Description */}
+                <p className="font-body text-base md:text-lg text-foreground leading-relaxed">
+                  {tr.activities[key].content}
+                </p>
               </div>
-            </div>
-          );
-        })}
+            </Reveal>
+          ))}
+        </div>
       </section>
       </PageEnter>
 

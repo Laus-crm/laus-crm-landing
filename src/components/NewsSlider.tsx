@@ -22,28 +22,38 @@ export default function NewsSlider({ lang }: NewsSliderProps) {
     <section id="news" className="container-site" style={{ paddingTop: 'var(--section-spacing-tight)', paddingBottom: 'var(--section-spacing-tight)' }}>
       <div className="section-divider mb-16" />
 
-      <Reveal className="flex items-center justify-between mb-12">
+      <Reveal className="flex flex-wrap items-center justify-between gap-4 mb-12">
         <h2 className="heading-display">{tr.news.title}</h2>
-        {newsItems.length > 0 && (
-          <div className="flex gap-2">
-            <button
-              onClick={prev}
-              disabled={offset === 0}
-              className="p-2 text-foreground/50 hover:text-foreground disabled:opacity-30 transition-colors"
-              aria-label="Previous news"
-            >
-              <ChevronLeft size={24} />
-            </button>
-            <button
-              onClick={next}
-              disabled={offset >= maxOffset}
-              className="p-2 text-foreground/50 hover:text-foreground disabled:opacity-30 transition-colors"
-              aria-label="Next news"
-            >
-              <ChevronRight size={24} />
-            </button>
-          </div>
-        )}
+        <div className="flex items-center gap-4">
+          {newsItems.length > 0 && (
+            <>
+              <div className="flex gap-2">
+                <button
+                  onClick={prev}
+                  disabled={offset === 0}
+                  className="p-2 text-foreground/50 hover:text-foreground disabled:opacity-30 transition-colors"
+                  aria-label={tr.news.prevButton}
+                >
+                  <ChevronLeft size={24} />
+                </button>
+                <button
+                  onClick={next}
+                  disabled={offset >= maxOffset}
+                  className="p-2 text-foreground/50 hover:text-foreground disabled:opacity-30 transition-colors"
+                  aria-label={tr.news.nextButton}
+                >
+                  <ChevronRight size={24} />
+                </button>
+              </div>
+              <Link
+                to={`/news?lang=${lang}`}
+                className="font-body text-sm font-medium text-foreground hover:text-primary transition-colors whitespace-nowrap"
+              >
+                {tr.news.viewAll} →
+              </Link>
+            </>
+          )}
+        </div>
       </Reveal>
 
       {newsItems.length === 0 ? (

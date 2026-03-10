@@ -32,7 +32,7 @@ const Contact = () => {
             to="/"
             className="font-body text-sm text-muted-foreground hover:text-foreground mb-10 inline-block"
           >
-            ← {lang === 'fr' ? "Retour à l'accueil" : 'Back to home'}
+            ← {tr.legal.backToHome}
           </Link>
           <div className="max-w-md">
             <h1 className="font-heading text-4xl md:text-5xl font-semibold tracking-wide text-foreground mb-2">

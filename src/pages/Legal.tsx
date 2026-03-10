@@ -27,7 +27,7 @@ const Legal = () => {
 
         <Reveal>
           <section className="mb-12">
-            <h2 className="font-heading text-2xl font-semibold text-foreground mb-4">{tr.legal.mentionsTitle}</h2>
+            <h2 className="heading-section text-foreground mb-4">{tr.legal.mentionsTitle}</h2>
             <p className="font-body text-sm text-foreground leading-relaxed whitespace-pre-line">
               {tr.legal.mentionsContent}
             </p>
@@ -36,7 +36,7 @@ const Legal = () => {
 
         <Reveal>
           <section id="regulatory" className="mb-12">
-            <h2 className="font-heading text-2xl font-semibold text-foreground mb-4">{tr.legal.regulatoryTitle}</h2>
+            <h2 className="heading-section text-foreground mb-4">{tr.legal.regulatoryTitle}</h2>
             <p className="font-body text-sm text-foreground leading-relaxed whitespace-pre-line">
               {tr.legal.regulatoryContent}
             </p>
@@ -45,7 +45,7 @@ const Legal = () => {
 
         <Reveal>
           <section id="data-protection">
-            <h2 className="font-heading text-2xl font-semibold text-foreground mb-4">{tr.legal.dataProtectionTitle}</h2>
+            <h2 className="heading-section text-foreground mb-4">{tr.legal.dataProtectionTitle}</h2>
             <p className="font-body text-sm text-foreground leading-relaxed whitespace-pre-line">
               {tr.legal.dataProtectionContent}
             </p>

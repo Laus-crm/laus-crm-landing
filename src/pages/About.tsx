@@ -9,12 +9,6 @@ import CountUpWhenVisible from '@/components/CountUpWhenVisible';
 import { useState } from 'react';
 import ghislainPhoto from '@/assets/ghislain-bussiere.png';
 import { IconHandsCircle, IconDiamond, IconHouse } from '@/components/icons/AboutValuesIcons';
-import {
-  Dialog,
-  DialogContent,
-  DialogTitle,
-  DialogHeader,
-} from '@/components/ui/dialog';
 
 const About = () => {
   const [searchParams] = useSearchParams();
@@ -52,7 +46,7 @@ const About = () => {
       {/* Section 1: Intro */}
       <section className="flex flex-col items-center justify-center px-6 pt-24 pb-12" style={{ paddingTop: 'calc(80px + var(--section-spacing-tight))', paddingBottom: 'var(--section-spacing-tight)' }}>
         <Link to="/" className="font-body text-sm text-muted-foreground hover:text-foreground mb-8">
-          ← {lang === 'fr' ? "Retour à l'accueil" : 'Back to home'}
+          ← {tr.legal.backToHome}
         </Link>
         <Reveal>
           <h1 className="heading-display mb-10 text-center">{tr.about.title}</h1>
@@ -74,7 +68,7 @@ const About = () => {
       {/* Section 2: Overview (3 valeurs) */}
       <section className="flex flex-col items-center justify-center px-6 py-12" style={{ paddingTop: 'var(--section-spacing-tight)', paddingBottom: 'var(--section-spacing-tight)' }}>
         <Reveal>
-          <h2 className="font-heading text-2xl font-semibold text-foreground mb-10 tracking-wide text-center">
+          <h2 className="heading-display mb-10 text-center">
             {tr.about.overviewTitle}
           </h2>
         </Reveal>
@@ -103,7 +97,7 @@ const About = () => {
       {/* Section 3: The Team */}
       <section className="flex flex-col items-center justify-center px-6 py-12" style={{ paddingTop: 'var(--section-spacing-tight)', paddingBottom: 'var(--section-spacing)' }}>
         <Reveal>
-          <h2 className="font-heading text-2xl font-semibold text-foreground mb-10 tracking-wide text-center">
+          <h2 className="heading-display mb-10 text-center">
             {tr.about.teamTitle}
           </h2>
         </Reveal>
@@ -132,7 +126,7 @@ const About = () => {
                 className="text-left w-full group"
               >
                 <p className="font-body text-base text-foreground leading-relaxed group-hover:text-primary transition-colors">{tr.about.bio}</p>
-                <span className="inline-block mt-3 font-body text-sm font-medium text-primary underline underline-offset-2">
+                <span className="inline-block mt-3 font-body text-sm font-medium text-black underline underline-offset-2">
                   {tr.about.findOutMore}
                 </span>
               </button>
@@ -141,16 +135,45 @@ const About = () => {
         </div>
       </section>
 
-      <Dialog open={teamBioOpen} onOpenChange={setTeamBioOpen}>
-        <DialogContent className="max-w-lg max-h-[85vh] overflow-y-auto">
-          <DialogHeader>
-            <DialogTitle>Ghislain Bussière — {tr.about.role}</DialogTitle>
-          </DialogHeader>
-          <div className="font-body text-sm text-foreground leading-relaxed whitespace-pre-line">
-            {tr.about.bioFull}
+      {/* Full-screen bio panel: slides in from the right */}
+      <div
+        className={`fixed inset-0 z-[60] flex transition-transform duration-300 ease-out ${teamBioOpen ? '' : 'pointer-events-none'}`}
+        style={{ transform: teamBioOpen ? 'translateX(0)' : 'translateX(100%)' }}
+        aria-hidden={!teamBioOpen}
+      >
+        <div className="w-full h-full grid grid-cols-1 md:grid-cols-2 bg-neutral-900">
+          {/* Left: full-height photo */}
+          <div className="relative h-[40vh] md:h-full w-full overflow-hidden">
+            <img
+              src={ghislainPhoto}
+              alt="Ghislain Bussière"
+              className="absolute inset-0 w-full h-full object-cover object-center"
+            />
           </div>
-        </DialogContent>
-      </Dialog>
+          {/* Right: dark background + large text */}
+          <div className="relative flex flex-col md:overflow-y-auto">
+            <div className="flex-1 flex flex-col justify-center px-8 py-12 md:px-14 md:py-16 lg:px-20">
+              <h2 className="font-heading text-2xl md:text-3xl lg:text-4xl font-semibold text-white mb-2">
+                Ghislain Bussière
+              </h2>
+              <p className="font-body text-lg text-neutral-300 mb-8">{tr.about.role}</p>
+              <div className="font-body text-lg md:text-xl lg:text-2xl text-neutral-200 leading-relaxed whitespace-pre-line">
+                {tr.about.bioFull}
+              </div>
+            </div>
+            <button
+              type="button"
+              onClick={() => setTeamBioOpen(false)}
+              className="absolute top-6 right-6 md:top-8 md:right-8 p-2 text-neutral-400 hover:text-white transition-colors rounded-md focus:outline-none focus:ring-2 focus:ring-white/50"
+              aria-label={tr.about.close}
+            >
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <path d="M18 6L6 18M6 6l12 12" />
+              </svg>
+            </button>
+          </div>
+        </div>
+      </div>
       </PageEnter>
 
       <LausFooter lang={lang} />

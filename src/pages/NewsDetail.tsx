@@ -1,6 +1,7 @@
 import { useParams, useSearchParams, Link } from 'react-router-dom';
 import { getNewsBySlug } from '@/data/news';
 import type { Lang } from '@/lib/i18n';
+import { t } from '@/lib/i18n';
 import LausNavbar from '@/components/LausNavbar';
 import LausFooter from '@/components/LausFooter';
 import PageEnter from '@/components/PageEnter';
@@ -12,14 +13,15 @@ const NewsDetail = () => {
   const [searchParams] = useSearchParams();
   const langParam = searchParams.get('lang');
   const [lang, setLang] = useState<Lang>(langParam === 'en' ? 'en' : 'fr');
+  const tr = t(lang);
 
   const item = useMemo(() => (slug ? getNewsBySlug(slug) : undefined), [slug]);
 
   if (!item) {
     return (
       <div className="min-h-screen bg-background flex flex-col items-center justify-center gap-6">
-        <h1 className="font-heading text-2xl text-foreground">Actualité introuvable</h1>
-        <Link to="/" className="text-primary underline hover:text-primary/90">Retour à l'accueil</Link>
+        <h1 className="heading-section text-foreground">{tr.news.notFound}</h1>
+        <Link to="/" className="text-primary underline hover:text-primary/90">{tr.legal.backToHome}</Link>
       </div>
     );
   }
@@ -32,9 +34,14 @@ const NewsDetail = () => {
       <LausNavbar lang={lang} onLangChange={setLang} variant="light" />
       <article className="container-site pt-32 pb-24" style={{ paddingTop: 'calc(var(--section-spacing) + 80px)', paddingBottom: 'var(--section-spacing)' }}>
         <PageEnter>
-        <Link to="/#news" className="font-body text-sm text-muted-foreground hover:text-foreground mb-8 inline-block">
-          ← {lang === 'fr' ? 'Retour aux actualités' : 'Back to news'}
-        </Link>
+        <div className="flex flex-wrap items-center gap-4 mb-8">
+          <Link to={`/news?lang=${lang}`} className="font-body text-sm text-muted-foreground hover:text-foreground inline-block">
+            ← {tr.news.backToNews}
+          </Link>
+          <Link to={`/news?lang=${lang}`} className="font-body text-sm font-medium text-primary hover:underline inline-block">
+            {tr.news.otherNews}
+          </Link>
+        </div>
         <div className="max-w-3xl">
           <div className="aspect-[16/9] overflow-hidden mb-8">
             <img

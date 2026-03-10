@@ -16,13 +16,13 @@ const Index = () => {
     <div className="min-h-screen bg-background">
       <LausNavbar lang={lang} onLangChange={setLang} />
       <HeroSlider lang={lang} />
-      <section id="activities" className="container-site" style={{ paddingTop: 'var(--section-spacing-tight)', paddingBottom: 'var(--section-spacing-tight)' }}>
-        <div className="section-divider mb-16" />
+      <section id="activities" className="container-site" style={{ paddingTop: 'var(--section-spacing-tighter)', paddingBottom: 'var(--section-spacing-tighter)' }}>
+        <div className="section-divider mb-10" />
         <Reveal>
-          <h2 className="heading-display mb-8">{tr.activities.title}</h2>
+          <h2 className="heading-display mb-5">{tr.activities.title}</h2>
         </Reveal>
         <Reveal delayMs={80}>
-          <p className="font-body text-base text-muted-foreground max-w-xl mb-10">{tr.activities.pageIntro}</p>
+          <p className="font-body text-base text-muted-foreground max-w-xl mb-6">{tr.activities.pageIntro}</p>
         </Reveal>
         <Reveal delayMs={120}>
           <Link to={`/activities?lang=${lang}`} className="font-body text-sm font-medium tracking-[0.15em] text-foreground hover:text-muted-foreground transition-colors">
@@ -30,13 +30,13 @@ const Index = () => {
           </Link>
         </Reveal>
       </section>
-      <section id="portfolio" className="container-site" style={{ paddingTop: 'var(--section-spacing-tight)', paddingBottom: 'var(--section-spacing-tight)' }}>
-        <div className="section-divider mb-16" />
+      <section id="portfolio" className="container-site" style={{ paddingTop: 'var(--section-spacing-tighter)', paddingBottom: 'var(--section-spacing-tighter)' }}>
+        <div className="section-divider mb-10" />
         <Reveal>
-          <h2 className="heading-display mb-8">{tr.portfolio.title}</h2>
+          <h2 className="heading-display mb-5">{tr.portfolio.title}</h2>
         </Reveal>
         <Reveal delayMs={80}>
-          <p className="font-body text-base text-muted-foreground max-w-xl mb-10">{tr.portfolio.pageIntro}</p>
+          <p className="font-body text-base text-muted-foreground max-w-xl mb-6">{tr.portfolio.pageIntro}</p>
         </Reveal>
         <Reveal delayMs={120}>
           <Link to={`/our-portfolio?lang=${lang}`} className="font-body text-sm font-medium tracking-[0.15em] text-foreground hover:text-muted-foreground transition-colors">
