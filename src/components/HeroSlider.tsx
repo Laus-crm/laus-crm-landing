@@ -31,7 +31,7 @@ export default function HeroSlider({ lang }: HeroSliderProps) {
       {slides.map((slide, i) => (
         <div
           key={slide.city}
-          className="absolute inset-0 transition-opacity duration-700"
+          className="absolute inset-0 transition-opacity duration-[1200ms] ease-in-out"
           style={{ opacity: i === current ? 1 : 0 }}
         >
           <img
