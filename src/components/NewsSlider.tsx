@@ -65,7 +65,7 @@ export default function NewsSlider({ lang }: NewsSliderProps) {
                 <article>
                   <div className="aspect-[4/3] overflow-hidden mb-4">
                     <img
-                      src={item.image}
+                      src={item.image.startsWith('http') ? item.image : `${import.meta.env.BASE_URL.replace(/\/$/, '')}${item.image}`}
                       alt={lang === 'fr' ? item.titleFr : item.titleEn}
                       className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
                       loading="lazy"

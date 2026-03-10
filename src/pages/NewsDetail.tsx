@@ -38,7 +38,7 @@ const NewsDetail = () => {
         <div className="max-w-3xl">
           <div className="aspect-[16/9] overflow-hidden mb-8">
             <img
-              src={item.image}
+              src={item.image.startsWith('http') ? item.image : `${import.meta.env.BASE_URL.replace(/\/$/, '')}${item.image}`}
               alt={title}
               className="w-full h-full object-cover"
             />
