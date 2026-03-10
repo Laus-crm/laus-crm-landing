@@ -68,10 +68,6 @@ const Activities = () => {
                 </h2>
                 {/* Thin horizontal line */}
                 <div className="w-12 h-px bg-border mb-4" aria-hidden />
-                {/* Subtitle: segments label */}
-                <p className="font-body text-sm font-medium uppercase tracking-[0.15em] text-muted-foreground mb-1">
-                  {tr.activities.segmentsLabel}
-                </p>
                 {/* Segment name */}
                 <p className="font-body text-base font-semibold uppercase tracking-wide text-foreground mb-4">
                   {tr.activities[key].segment}

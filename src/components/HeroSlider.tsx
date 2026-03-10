@@ -46,7 +46,7 @@ export default function HeroSlider({ lang }: HeroSliderProps) {
       ))}
 
       <div className="absolute bottom-[20%] left-8 md:left-16 max-w-3xl z-10 animate-in fade-in-0 slide-in-from-bottom-6 duration-700 font-body">
-        <h1 className="text-4xl md:text-5xl font-semibold text-primary-foreground leading-tight tracking-wide">
+        <h1 className="text-2xl md:text-3xl font-semibold text-primary-foreground leading-tight tracking-wide">
           {tr.hero.tagline}
         </h1>
         <Link

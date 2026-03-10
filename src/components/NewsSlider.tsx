@@ -81,7 +81,7 @@ export default function NewsSlider({ lang }: NewsSliderProps) {
                       loading="lazy"
                     />
                   </div>
-                  <p className="text-label mb-2">{item.date}</p>
+                  <p className="text-label mb-2 pl-3">{item.date}</p>
                   <Reveal delayMs={60}>
                     <h3 className="font-heading text-xl font-semibold text-foreground group-hover:text-primary transition-colors">
                       {lang === 'fr' ? item.titleFr : item.titleEn}

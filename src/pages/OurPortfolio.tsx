@@ -37,8 +37,8 @@ const OurPortfolio = () => {
           />
           <div className="absolute inset-0 bg-white/70" aria-hidden />
           <div className="absolute inset-0 bg-background/30" aria-hidden />
-          <div className="relative z-10 container-site">
-            <Link to="/" className="font-body text-sm text-foreground/80 hover:text-foreground mb-8 inline-block">
+          <div className="relative z-10 container-site pt-32">
+            <Link to="/" className="font-body text-sm text-muted-foreground hover:text-foreground mb-10 inline-block">
               ← {tr.legal.backToHome}
             </Link>
             <Reveal>

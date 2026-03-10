@@ -13,7 +13,7 @@ const translations = {
       navigationTitle: 'Navigation',
     },
     hero: {
-      tagline: '— 10 ans d\'expertise au service de la création de valeur dans l\'hôtellerie et l\'immobilier commercial en France et en Europe',
+      tagline: '/ 10 ans d\'expertise au service de la création de valeur dans l\'hôtellerie et l\'immobilier commercial en France et en Europe',
       cta: 'En savoir plus',
     },
     about: {
@@ -31,7 +31,7 @@ const translations = {
       overview3Label: 'Actifs valorisés',
       overview3Sub: '(hôtels, bureaux, logistique)',
       teamTitle: 'The Team',
-      bio: 'Fondateur et directeur de LAUS Asset Management, Ghislain Bussière s\'appuie sur plus de 15 ans d\'expérience en immobilier et hôtellerie. Son expertise couvre l\'asset management, les transactions et le conseil stratégique.',
+      bio: 'Fondateur et directeur de LAUS Asset Management, Ghislain Bussière s\'appuie sur plus de 6 ans d\'expérience en immobilier et hôtellerie. Son expertise couvre l\'asset management, les transactions et le conseil stratégique.',
       bioFull: 'Ghislain dirige LAUS Asset Management, société spécialisée dans l\'asset management et les transactions d\'hôtels et d\'actifs immobiliers en Europe.\n\nPlus de six ans d\'expérience en asset management (hôtellerie, bureaux, logistique) et en transactions. Il a exercé chez BNP REIM, Cushman & Wakefield et Feuring Hotel Consulting GmbH, où il a réalisé des transactions et géré des portefeuilles multi-milliardaires.\n\nDiplômé du Glion Institute of Higher Education (Bachelor Hospitality Management) et de la Sorbonne (Master Immobilier et Finance).',
       experience: 'Parcours professionnel : BNP Paribas Real Estate Investment Management, Cushman & Wakefield, Feuring Hotel Consulting.',
       education: 'Formation : Glion Institute of Higher Education & Université Paris 1 Panthéon-Sorbonne.',
@@ -125,7 +125,7 @@ const translations = {
       navigationTitle: 'Navigation',
     },
     hero: {
-      tagline: '— 10 years of expertise creating value in hospitality and commercial real estate across France and Europe',
+      tagline: '/ 10 years of expertise creating value in hospitality and commercial real estate across France and Europe',
       cta: 'Learn more',
     },
     about: {
@@ -143,7 +143,7 @@ const translations = {
       overview3Label: 'Assets Valued',
       overview3Sub: 'Hotels, Office, Logistics',
       teamTitle: 'The Team',
-      bio: 'Ghislain Bussière is the founder and director of LAUS Asset Management. With over 15 years of experience in real estate and hospitality, he has developed recognized expertise in asset management, transactions, and strategic advisory.',
+      bio: 'Ghislain Bussière is the founder and director of LAUS Asset Management. With over 6 years of experience in real estate and hospitality, he has developed recognized expertise in asset management, transactions, and strategic advisory.',
       bioFull: 'Ghislain is the Director of LAUS Asset Management, a company specializing in the asset management and transaction of hotels and real estate assets across Europe. With over 6 years of experience in real estate asset management (hospitality, office, and logistics) and transactions (hospitality and office), Ghislain has held roles at BNP REIM, Cushman & Wakefield, and Feuring Hotel Consulting GmbH, where he executed transactions and managed multi-billion-euro portfolios across hotel, office, and logistics assets. He holds a Bachelor\'s degree in Hospitality Management from Glion Institute of Higher Education and a Master\'s degree in Real Estate and Finance from La Sorbonne.',
       experience: 'Professional background: BNP Paribas Real Estate Investment Management, Cushman & Wakefield, Feuring Hotel Consulting.',
       education: 'Education: Glion Institute of Higher Education & Université Paris 1 Panthéon-Sorbonne.',

@@ -17,8 +17,8 @@ export default function LausFooter({ lang }: FooterProps) {
           <div className="md:col-span-3">
             <Reveal>
               <Link to="/" className="flex items-stretch gap-1.5 mb-8 inline-flex">
-                <span className="flex items-center font-heading text-3xl font-semibold text-muted-foreground tracking-wide">LAUS</span>
-                <span className="flex items-center font-body text-xs font-medium uppercase tracking-[0.2em] text-muted-foreground leading-tight">
+                <span className="flex items-center font-heading text-3xl font-semibold tracking-wide text-foreground">LAUS</span>
+                <span className="flex items-center font-body text-xs font-medium uppercase tracking-[0.2em] leading-tight text-muted-foreground">
                   Asset<br />Management
                 </span>
               </Link>

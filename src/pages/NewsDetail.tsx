@@ -38,7 +38,7 @@ const NewsDetail = () => {
           <Link to={`/news?lang=${lang}`} className="font-body text-sm text-muted-foreground hover:text-foreground inline-block">
             ← {tr.news.backToNews}
           </Link>
-          <Link to={`/news?lang=${lang}`} className="font-body text-sm font-medium text-primary hover:underline inline-block">
+          <Link to={`/news?lang=${lang}`} className="font-body text-sm font-medium text-foreground hover:underline inline-block">
             {tr.news.otherNews}
           </Link>
         </div>
@@ -51,7 +51,7 @@ const NewsDetail = () => {
             />
           </div>
           <Reveal>
-            <p className="text-label text-muted-foreground mb-2">{item.date}</p>
+            <p className="text-label text-muted-foreground mb-2 pl-3">{item.date}</p>
           </Reveal>
           <Reveal delayMs={80}>
             <h1 className="heading-display mb-8">{title}</h1>

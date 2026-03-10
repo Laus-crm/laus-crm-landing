@@ -26,7 +26,7 @@ const Contact = () => {
           aria-hidden
         />
         <div className="absolute inset-0 bg-background/75 backdrop-blur-[2px]" aria-hidden />
-        <div className="relative z-10 container-site pt-24 pb-16">
+        <div className="relative z-10 container-site pt-32 pb-16">
           <PageEnter>
           <Link
             to="/"
@@ -53,7 +53,7 @@ const Contact = () => {
             </Reveal>
             <Reveal delayMs={200}>
               <p className="font-body text-base text-foreground mt-2">
-                <a href={`mailto:${tr.contact.email}`} className="text-primary hover:underline">
+                <a href={`mailto:${tr.contact.email}`} className="text-foreground hover:underline">
                   {tr.contact.email}
                 </a>
               </p>

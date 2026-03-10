@@ -49,7 +49,7 @@ const News = () => {
                           loading="lazy"
                         />
                       </div>
-                      <p className="text-label mb-2">{item.date}</p>
+                      <p className="text-label mb-2 pl-3">{item.date}</p>
                       <h2 className="font-heading text-xl font-semibold text-foreground group-hover:text-primary transition-colors">
                         {lang === 'fr' ? item.titleFr : item.titleEn}
                       </h2>

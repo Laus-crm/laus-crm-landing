@@ -1,6 +1,6 @@
 import { type Lang, t } from '@/lib/i18n';
 import { Link } from 'react-router-dom';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { Menu } from 'lucide-react';
 import { Sheet, SheetContent, SheetTitle, SheetTrigger } from '@/components/ui/sheet';
 import { Button } from '@/components/ui/button';
@@ -8,7 +8,6 @@ import { Button } from '@/components/ui/button';
 interface NavbarProps {
   lang: Lang;
   onLangChange: (lang: Lang) => void;
-  /** Use "light" on inner pages (e.g. news detail) so nav is visible on light background */
   variant?: 'transparent' | 'light';
 }
 
@@ -16,42 +15,21 @@ const NAV_ITEMS = (tr: ReturnType<typeof t>, lang: Lang) => [
   { label: tr.nav.about, to: `/about?lang=${lang}` },
   { label: tr.nav.activities, to: `/activities?lang=${lang}` },
   { label: tr.nav.portfolio, to: `/our-portfolio?lang=${lang}` },
-  { label: tr.nav.news, to: '/#news' },
+  { label: tr.nav.news, to: `/news?lang=${lang}` },
   { label: tr.nav.contact, to: `/contact?lang=${lang}` },
 ];
 
-export default function LausNavbar({ lang, onLangChange, variant = 'transparent' }: NavbarProps) {
+export default function LausNavbar({ lang, onLangChange }: NavbarProps) {
   const tr = t(lang);
-  const isLight = variant === 'light';
-  const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
-  const isNavbarSolid = isLight || scrolled;
-  const textClass = isNavbarSolid ? 'text-foreground' : 'text-primary-foreground';
-  const textMutedClass = isNavbarSolid ? 'text-muted-foreground' : 'text-primary-foreground/90';
-  const borderClass = isNavbarSolid ? 'border-border' : 'border-primary-foreground/30';
-
-  useEffect(() => {
-    if (isLight) return;
-    const onScroll = () => setScrolled(window.scrollY > 10);
-    onScroll();
-    window.addEventListener('scroll', onScroll, { passive: true });
-    return () => window.removeEventListener('scroll', onScroll);
-  }, [isLight]);
 
   const navItems = NAV_ITEMS(tr, lang);
 
   return (
-    <nav
-      className={[
-        'fixed top-0 left-0 right-0 z-50 flex items-center justify-between px-6 py-5 md:px-8',
-        'transition-colors duration-300',
-        isLight || scrolled ? 'bg-white border-b border-border' : '',
-      ].join(' ')}
-      style={!isLight && !scrolled ? { backgroundColor: 'transparent' } : undefined}
-    >
+    <nav className="fixed top-0 left-0 right-0 z-50 flex items-center justify-between px-6 py-5 md:px-8 bg-white border-b border-border">
       <Link to="/" className="flex items-stretch gap-1.5">
-        <span className={`flex items-center font-heading text-3xl font-semibold tracking-wide ${textClass}`}>LAUS</span>
-        <span className={`flex items-center font-body text-xs font-medium uppercase tracking-[0.2em] leading-tight ${isNavbarSolid ? 'text-muted-foreground' : 'text-primary-foreground/80'}`}>
+        <span className="flex items-center font-heading text-3xl font-semibold tracking-wide text-foreground">LAUS</span>
+        <span className="flex items-center font-body text-xs font-medium uppercase tracking-[0.2em] leading-tight text-muted-foreground">
           Asset<br />Management
         </span>
       </Link>
@@ -62,22 +40,22 @@ export default function LausNavbar({ lang, onLangChange, variant = 'transparent'
           <Link
             key={item.to}
             to={item.to}
-            className={`font-body text-base transition-colors duration-200 hover:opacity-90 ${textMutedClass}`}
+            className="font-body text-base text-muted-foreground hover:text-foreground transition-colors duration-200"
           >
             {item.label}
           </Link>
         ))}
-        <div className={`flex items-center gap-1 ml-4 border-l pl-4 ${borderClass}`}>
+        <div className="flex items-center gap-1 ml-4 border-l border-border pl-4">
           <button
             onClick={() => onLangChange('fr')}
-            className={`font-body text-base transition-colors duration-200 ${lang === 'fr' ? `${textClass} font-medium` : 'opacity-60'}`}
+            className={`font-body text-base transition-colors duration-200 ${lang === 'fr' ? 'text-foreground font-medium' : 'text-muted-foreground hover:text-foreground'}`}
           >
             FR
           </button>
-          <span className={isLight ? 'text-muted-foreground' : 'text-primary-foreground/30'}>/</span>
+          <span className="text-muted-foreground">/</span>
           <button
             onClick={() => onLangChange('en')}
-            className={`font-body text-base transition-colors duration-200 ${lang === 'en' ? `${textClass} font-medium` : 'opacity-60'}`}
+            className={`font-body text-base transition-colors duration-200 ${lang === 'en' ? 'text-foreground font-medium' : 'text-muted-foreground hover:text-foreground'}`}
           >
             EN
           </button>
@@ -90,7 +68,7 @@ export default function LausNavbar({ lang, onLangChange, variant = 'transparent'
           <Button
             variant="ghost"
             size="icon"
-            className={`md:hidden ${textClass} hover:bg-white/10`}
+            className="md:hidden text-foreground hover:bg-muted"
             aria-label={tr.nav.menuLabel}
           >
             <Menu className="h-6 w-6" />
