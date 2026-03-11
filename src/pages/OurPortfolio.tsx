@@ -26,6 +26,13 @@ const OurPortfolio = () => {
       <LausNavbar lang={lang} onLangChange={setLang} variant="light" />
 
       <PageEnter>
+        {/* Lien retour: même bloc que About / Activities (position exacte) */}
+        <section className="container-site pt-32 pb-20 md:pt-40 md:pb-28">
+          <Link to="/" className="font-body text-sm text-muted-foreground hover:text-foreground mb-10 inline-block">
+            ← {tr.legal.backToHome}
+          </Link>
+        </section>
+
         {/* Hero: image Paris en fond, désaturée + overlay, titre et stats par-dessus */}
         <section className="relative min-h-[70vh] flex flex-col overflow-hidden">
           <div
@@ -37,11 +44,7 @@ const OurPortfolio = () => {
           />
           <div className="absolute inset-0 bg-white/70" aria-hidden />
           <div className="absolute inset-0 bg-background/30" aria-hidden />
-          {/* Même hauteur que About: link puis titre puis stats (pas de centrage vertical) */}
-          <div className="relative z-10 container-site pt-32 pb-20 md:pt-40 md:pb-28">
-            <Link to="/" className="font-body text-sm text-muted-foreground hover:text-foreground mb-10 inline-block">
-              ← {tr.legal.backToHome}
-            </Link>
+          <div className="relative z-10 container-site pt-12 pb-20 md:pt-16 md:pb-28">
             <Reveal>
               <h1 className="heading-display text-foreground mb-12 md:mb-16 text-center">
                 {tr.portfolio.title}

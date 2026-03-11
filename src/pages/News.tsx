@@ -7,6 +7,7 @@ import LausFooter from '@/components/LausFooter';
 import PageEnter from '@/components/PageEnter';
 import Reveal from '@/components/Reveal';
 import { newsItems } from '@/data/news';
+import { assetUrl } from '@/lib/baseUrl';
 
 const News = () => {
   const [searchParams] = useSearchParams();
@@ -43,7 +44,7 @@ const News = () => {
                     <article>
                       <div className="aspect-[4/3] overflow-hidden mb-3 rounded-sm">
                         <img
-                          src={item.image.startsWith('http') ? item.image : `${import.meta.env.BASE_URL.replace(/\/$/, '')}${item.image}`}
+                          src={assetUrl(item.image)}
                           alt={lang === 'fr' ? item.titleFr : item.titleEn}
                           className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
                           loading="lazy"

@@ -40,7 +40,7 @@ export function newsPlugin(): Plugin {
           withSort.push({
             id: slug,
             slug,
-            image: String(data?.image ?? '').trim() || '/news/news-1.svg',
+            image: String(data?.image ?? '').trim() || '/news/image-exemple-actualite.svg',
             titleFr: String(data?.titleFr ?? '').trim() || 'Sans titre',
             titleEn: String(data?.titleEn ?? '').trim() || 'Untitled',
             date: String(data?.date ?? '').trim() || '',

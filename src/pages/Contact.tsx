@@ -18,6 +18,16 @@ const Contact = () => {
     <div className="min-h-screen bg-background">
       <LausNavbar lang={lang} onLangChange={setLang} variant="light" />
 
+      {/* Lien retour: même bloc que About / Activities (position exacte) */}
+      <section className="container-site pt-32 pb-20 md:pt-40 md:pb-28">
+        <Link
+          to="/"
+          className="font-body text-sm text-muted-foreground hover:text-foreground mb-10 inline-block"
+        >
+          ← {tr.legal.backToHome}
+        </Link>
+      </section>
+
       {/* Full-height block: Paris image as background, contact info on the left */}
       <section className="relative min-h-[calc(100vh-80px)] flex flex-col">
         <div
@@ -26,16 +36,7 @@ const Contact = () => {
           aria-hidden
         />
         <div className="absolute inset-0 bg-background/75 backdrop-blur-[2px]" aria-hidden />
-        {/* Lien retour: même position que Nos activités (container-site pt-32) */}
-        <div className="relative z-10 container-site pt-32 pb-0">
-          <Link
-            to="/"
-            className="font-body text-sm text-muted-foreground hover:text-foreground mb-10 inline-block"
-          >
-            ← {tr.legal.backToHome}
-          </Link>
-        </div>
-        <div className="relative z-10 flex-1 flex items-center container-site pb-16">
+        <div className="relative z-10 flex-1 flex items-center container-site pb-16 pt-0">
           <PageEnter>
           <div className="max-w-md">
             <h1 className="font-heading text-4xl md:text-5xl font-semibold tracking-wide text-foreground mb-2">

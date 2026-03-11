@@ -1,19 +1,26 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 import { newsItems } from '@/data/news';
 import { type Lang, t } from '@/lib/i18n';
+import { assetUrl } from '@/lib/baseUrl';
 import Reveal from '@/components/Reveal';
 
 interface NewsSliderProps {
   lang: Lang;
 }
 
+const VISIBLE_COUNT = 3;
+
 export default function NewsSlider({ lang }: NewsSliderProps) {
   const tr = t(lang);
   const [offset, setOffset] = useState(0);
-  const visibleCount = 3;
-  const maxOffset = Math.max(0, newsItems.length - visibleCount);
+  const maxOffset = Math.max(0, newsItems.length - VISIBLE_COUNT);
+
+  // Resynchroniser offset si le nombre d'items diminue (évite affichage vide)
+  useEffect(() => {
+    setOffset((o) => Math.min(o, maxOffset));
+  }, [maxOffset]);
 
   const prev = () => setOffset((o) => Math.max(0, o - 1));
   const next = () => setOffset((o) => Math.min(maxOffset, o + 1));
@@ -64,7 +71,7 @@ export default function NewsSlider({ lang }: NewsSliderProps) {
         <div className="overflow-hidden">
           <div
             className="flex gap-6 transition-transform duration-500 ease-out"
-            style={{ transform: `translateX(-${offset * (100 / visibleCount)}%)` }}
+            style={{ transform: `translateX(-${offset * (100 / VISIBLE_COUNT)}%)` }}
           >
             {newsItems.map((item) => (
               <Link
@@ -75,7 +82,7 @@ export default function NewsSlider({ lang }: NewsSliderProps) {
                 <article>
                   <div className="aspect-[4/3] overflow-hidden mb-4">
                     <img
-                      src={item.image.startsWith('http') ? item.image : `${import.meta.env.BASE_URL.replace(/\/$/, '')}${item.image}`}
+                      src={assetUrl(item.image)}
                       alt={lang === 'fr' ? item.titleFr : item.titleEn}
                       className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
                       loading="lazy"

@@ -10,24 +10,117 @@ import { useState, useEffect } from 'react';
 import ghislainPhoto from '@/assets/ghislain-bussiere.png';
 import { IconHandsCircle, IconDiamond, IconHouse } from '@/components/icons/AboutValuesIcons';
 
+const DRAWER_TRANSITION_MS = 300;
+
+/** Side Panel (drawer) : 90% mobile / 40% desktop, slide depuis la droite, backdrop au clic ferme. */
+function GhislainBioDrawer({
+  open,
+  onClose,
+  photo,
+  name,
+  role,
+  bioFull,
+  closeLabel,
+}: {
+  open: boolean;
+  onClose: () => void;
+  photo: string;
+  name: string;
+  role: string;
+  bioFull: string;
+  closeLabel: string;
+}) {
+  const [slidIn, setSlidIn] = useState(false);
+  const [isClosing, setIsClosing] = useState(false);
+
+  useEffect(() => {
+    if (!open) {
+      setSlidIn(false);
+      setIsClosing(false);
+      document.body.style.overflow = '';
+      return;
+    }
+    document.body.style.overflow = 'hidden';
+    const t = setTimeout(() => setSlidIn(true), 20);
+    return () => clearTimeout(t);
+  }, [open]);
+
+  const handleClose = () => {
+    if (!open) return;
+    setIsClosing(true);
+    setTimeout(() => {
+      onClose();
+    }, DRAWER_TRANSITION_MS);
+  };
+
+  useEffect(() => {
+    const onEscape = (e: KeyboardEvent) => e.key === 'Escape' && handleClose();
+    if (open) window.addEventListener('keydown', onEscape);
+    return () => window.removeEventListener('keydown', onEscape);
+  }, [open]);
+
+  if (!open) return null;
+
+  const panelTransform = isClosing ? 'translateX(100%)' : slidIn ? 'translateX(0)' : 'translateX(100%)';
+  const backdropOpacity = isClosing ? 0 : 1;
+
+  return (
+    <>
+      <div
+        className="fixed inset-0 z-[90] bg-black/50 transition-opacity duration-300 ease-out"
+        style={{ opacity: backdropOpacity }}
+        onClick={handleClose}
+        onKeyDown={(e) => e.key === 'Enter' && handleClose()}
+        role="button"
+        tabIndex={0}
+        aria-label={closeLabel}
+      />
+      <aside
+        className="fixed top-0 right-0 z-[100] h-full w-[90%] md:w-[40%] max-w-lg bg-background shadow-xl flex flex-col transition-transform duration-300 ease-out"
+        style={{ transform: panelTransform }}
+        role="dialog"
+        aria-modal="true"
+        aria-label={name}
+      >
+        <div className="flex-1 overflow-y-auto">
+          <div className="flex justify-end p-4">
+            <button
+              type="button"
+              onClick={handleClose}
+              className="p-2 rounded-full text-muted-foreground hover:text-foreground hover:bg-muted transition-colors focus:outline-none focus:ring-2 focus:ring-primary"
+              aria-label={closeLabel}
+            >
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <path d="M18 6L6 18M6 6l12 12" />
+              </svg>
+            </button>
+          </div>
+          <div className="flex justify-center px-6 pb-4">
+            <div className="w-32 h-32 md:w-40 md:h-40 rounded-full overflow-hidden border-4 border-muted shadow-lg">
+              <img src={photo} alt={name} className="w-full h-full object-cover object-top" />
+            </div>
+          </div>
+          <div className="text-center px-6 pb-4">
+            <h2 className="font-heading text-2xl md:text-3xl font-semibold text-foreground">{name}</h2>
+            <p className="font-body text-sm font-medium uppercase tracking-wider text-muted-foreground mt-1">{role}</p>
+          </div>
+          <div className="px-6 pb-10">
+            <p className="font-body text-base text-foreground leading-relaxed whitespace-pre-line">
+              {bioFull}
+            </p>
+          </div>
+        </div>
+      </aside>
+    </>
+  );
+}
+
 const About = () => {
   const [searchParams] = useSearchParams();
   const langParam = searchParams.get('lang');
   const [lang, setLang] = useState<Lang>(langParam === 'en' ? 'en' : 'fr');
-  const [teamBioOpen, setTeamBioOpen] = useState(false);
+  const [bioDrawerOpen, setBioDrawerOpen] = useState(false);
   const tr = t(lang);
-
-  useEffect(() => {
-    if (teamBioOpen) {
-      window.scrollTo(0, 0);
-      document.body.style.overflow = 'hidden';
-    } else {
-      document.body.style.overflow = '';
-    }
-    return () => {
-      document.body.style.overflow = '';
-    };
-  }, [teamBioOpen]);
 
   const overviewItems = [
     {
@@ -55,153 +148,121 @@ const About = () => {
       <LausNavbar lang={lang} onLangChange={setLang} variant="light" />
 
       <PageEnter>
-      {/* Section 1: Intro */}
-      <section className="container-site pt-32 pb-20 md:pt-40 md:pb-28">
-        <Link to="/" className="font-body text-sm text-muted-foreground hover:text-foreground mb-10 inline-block">
-          ← {tr.legal.backToHome}
-        </Link>
-        <div className="flex flex-col items-center justify-center max-w-2xl mx-auto">
-        <Reveal>
-          <h1 className="heading-display mb-10 text-center">{tr.about.title}</h1>
-        </Reveal>
-        <div className="space-y-6 text-center w-full">
-          <Reveal delayMs={80}>
-            <p className="font-body text-base text-foreground leading-relaxed">
-              {tr.about.intro1}
-            </p>
-          </Reveal>
-          <Reveal delayMs={120}>
-            <p className="font-body text-base text-foreground leading-relaxed">
-              {tr.about.intro2}
-            </p>
-          </Reveal>
-        </div>
-        </div>
-      </section>
+        {/* Section 1: Intro */}
+        <section className="container-site pt-32 pb-20 md:pt-40 md:pb-28">
+          <Link to="/" className="font-body text-sm text-muted-foreground hover:text-foreground mb-10 inline-block">
+            ← {tr.legal.backToHome}
+          </Link>
+          <div className="flex flex-col items-center justify-center max-w-2xl mx-auto">
+            <Reveal>
+              <h1 className="heading-display mb-10 text-center">{tr.about.title}</h1>
+            </Reveal>
+            <div className="space-y-6 text-center w-full">
+              <Reveal delayMs={80}>
+                <p className="font-body text-base text-foreground leading-relaxed">
+                  {tr.about.intro1}
+                </p>
+              </Reveal>
+              <Reveal delayMs={120}>
+                <p className="font-body text-base text-foreground leading-relaxed">
+                  {tr.about.intro2}
+                </p>
+              </Reveal>
+            </div>
+          </div>
+        </section>
 
-      {/* Section 2: Overview (3 valeurs) */}
-      <section className="flex flex-col items-center justify-center px-6 py-12" style={{ paddingTop: 'var(--section-spacing-tight)', paddingBottom: 'var(--section-spacing-tight)' }}>
-        <Reveal>
-          <h2 className="heading-display mb-10 text-center">
-            {tr.about.overviewTitle}
-          </h2>
-        </Reveal>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-10 md:gap-12 max-w-4xl mx-auto w-full">
-          {overviewItems.map((item, index) => (
-            <Reveal key={item.label} delayMs={80 + index * 60}>
-              <div className="flex flex-col items-center text-center">
-                <div className="flex items-center justify-center w-14 h-14 rounded border border-border text-foreground mb-5">
-                  <item.icon className="w-8 h-8" />
+        {/* Section 2: Overview (3 valeurs) */}
+        <section className="flex flex-col items-center justify-center px-6 py-12" style={{ paddingTop: 'var(--section-spacing-tight)', paddingBottom: 'var(--section-spacing-tight)' }}>
+          <Reveal>
+            <h2 className="heading-display mb-10 text-center">
+              {tr.about.overviewTitle}
+            </h2>
+          </Reveal>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-10 md:gap-12 max-w-4xl mx-auto w-full">
+            {overviewItems.map((item, index) => (
+              <Reveal key={item.label} delayMs={80 + index * 60}>
+                <div className="flex flex-col items-center text-center">
+                  <div className="flex items-center justify-center w-14 h-14 rounded border border-border text-foreground mb-5">
+                    <item.icon className="w-8 h-8" />
+                  </div>
+                  <p className="font-heading text-4xl font-semibold text-foreground">
+                    <CountUpWhenVisible value={item.value} />
+                  </p>
+                  <p className="font-body text-base text-muted-foreground mt-2">
+                    {item.label}
+                  </p>
+                  <p className="font-body text-sm text-muted-foreground mt-1">
+                    {item.sub}
+                  </p>
                 </div>
-                <p className="font-heading text-4xl font-semibold text-foreground">
-                  <CountUpWhenVisible value={item.value} />
-                </p>
-                <p className="font-body text-base text-muted-foreground mt-2">
-                  {item.label}
-                </p>
-                <p className="font-body text-sm text-muted-foreground mt-1">
-                  {item.sub}
-                </p>
-              </div>
-            </Reveal>
-          ))}
-        </div>
-      </section>
+              </Reveal>
+            ))}
+          </div>
+        </section>
 
-      {/* Section 3: The Team */}
-      <section className="flex flex-col items-center justify-center px-6 py-12" style={{ paddingTop: 'var(--section-spacing-tight)', paddingBottom: 'var(--section-spacing)' }}>
-        <Reveal>
-          <h2 className="heading-display mb-10 text-center">
-            {tr.about.teamTitle}
-          </h2>
-        </Reveal>
-        <div className="grid grid-cols-1 md:grid-cols-12 gap-10 max-w-4xl w-full items-center">
-          <Reveal delayMs={80} className="md:col-span-4 flex flex-col items-center md:items-end text-center md:text-right">
-            <button
-              type="button"
-              onClick={() => setTeamBioOpen(true)}
-              className="aspect-[3/4] w-full max-w-xs overflow-hidden rounded-none border-0 bg-transparent p-0 cursor-pointer text-left focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2"
-              aria-label={tr.about.findOutMore}
-            >
-              <img
-                src={ghislainPhoto}
-                alt="Ghislain Bussière"
-                className="w-full h-full object-cover"
-              />
-            </button>
-            <p className="font-heading text-3xl font-semibold tracking-wide text-foreground mt-4 mb-2">Ghislain Bussière</p>
-            <p className="font-body text-xs font-medium uppercase tracking-[0.2em] leading-tight text-muted-foreground">{tr.about.role}</p>
+        {/* Section 3: The Team — clic sur photo ou texte ouvre le drawer (bio complète) */}
+        <section
+          className="container-site"
+          style={{ paddingTop: 'var(--section-spacing-tight)', paddingBottom: 'var(--section-spacing)' }}
+        >
+          <Reveal>
+            <h2 className="heading-display mb-10 text-center">
+              {tr.about.teamTitle}
+            </h2>
           </Reveal>
-          <div className="md:col-span-8 text-center md:text-left">
-            <Reveal delayMs={120}>
-              <button
-                type="button"
-                onClick={() => setTeamBioOpen(true)}
-                className="text-left w-full group"
-              >
-                <p className="font-body text-base text-foreground leading-relaxed group-hover:text-primary transition-colors">{tr.about.bio}</p>
-                <span className="inline-block mt-3 font-body text-sm font-medium text-black underline underline-offset-2">
-                  {tr.about.findOutMore}
-                </span>
-              </button>
-            </Reveal>
-          </div>
-        </div>
-      </section>
-
-      {/* Full-screen bio panel: covers entire viewport (above navbar/footer), slides in from the right */}
-      <div
-        className={`fixed inset-0 z-[100] flex transition-transform duration-300 ease-out ${teamBioOpen ? '' : 'pointer-events-none'}`}
-        style={{ transform: teamBioOpen ? 'translateX(0)' : 'translateX(100%)' }}
-        aria-hidden={!teamBioOpen}
-      >
-        <div className="w-full h-full min-h-screen grid grid-cols-1 md:grid-cols-2 bg-neutral-900 relative">
-          {/* Close: top right of entire panel */}
-          <button
-            type="button"
-            onClick={() => setTeamBioOpen(false)}
-            className="absolute top-6 right-6 md:top-8 md:right-8 z-10 flex items-center gap-2 py-2 px-3 rounded-md text-neutral-300 hover:text-white hover:bg-white/10 transition-colors focus:outline-none focus:ring-2 focus:ring-white/50"
-            aria-label={tr.about.close}
-          >
-            <span className="font-body text-sm">{tr.about.close}</span>
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-              <path d="M18 6L6 18M6 6l12 12" />
-            </svg>
-          </button>
-
-          {/* Left: photo rapetissée avec bordures couleur background */}
-          <div className="flex items-center justify-center p-8 md:p-12">
-            <div className="w-full max-w-sm aspect-[3/4] overflow-hidden border-[10px] border-neutral-900 bg-neutral-900 shadow-xl">
-              <img
-                src={ghislainPhoto}
-                alt="Ghislain Bussière"
-                className="w-full h-full object-cover object-center"
-              />
-            </div>
-          </div>
-          {/* Right: dark background + large text */}
-          <div className="relative flex flex-col md:overflow-y-auto">
-            <div className="flex-1 flex flex-col justify-center px-8 py-12 md:px-14 md:py-16 lg:px-20">
-              <h2 className="font-heading text-2xl md:text-3xl lg:text-4xl font-semibold text-white mb-2">
-                Ghislain Bussière
-              </h2>
-              <p className="font-body text-lg text-neutral-300 mb-8">{tr.about.role}</p>
-              <div className="font-body text-lg md:text-xl lg:text-2xl text-neutral-200 leading-relaxed whitespace-pre-line">
-                {tr.about.bioFull}
+          <div className="max-w-4xl mx-auto">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 items-start">
+              <Reveal delayMs={80} className="flex justify-center md:justify-end">
+                <button
+                  type="button"
+                  onClick={() => setBioDrawerOpen(true)}
+                  className="w-full max-w-xs aspect-[3/4] overflow-hidden rounded-sm border-0 bg-transparent p-0 cursor-pointer text-left focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2"
+                  aria-label={tr.about.findOutMore}
+                >
+                  <img
+                    src={ghislainPhoto}
+                    alt="Ghislain Bussière"
+                    className="w-full h-full object-cover object-top"
+                  />
+                </button>
+              </Reveal>
+              <div className="text-center md:text-left">
+                <Reveal delayMs={120}>
+                  <h3 className="font-heading text-2xl md:text-3xl font-semibold tracking-wide text-foreground mb-2">
+                    Ghislain Bussière
+                  </h3>
+                  <p className="font-body text-xs font-medium uppercase tracking-[0.2em] text-muted-foreground mb-4">
+                    {tr.about.role}
+                  </p>
+                  <button
+                    type="button"
+                    onClick={() => setBioDrawerOpen(true)}
+                    className="text-left w-full group"
+                  >
+                    <p className="font-body text-base text-foreground leading-relaxed group-hover:text-primary transition-colors">
+                      {tr.about.bio}
+                    </p>
+                    <span className="inline-block mt-3 font-body text-sm font-medium text-primary underline underline-offset-2">
+                      {tr.about.findOutMore}
+                    </span>
+                  </button>
+                </Reveal>
               </div>
-              <button
-                type="button"
-                onClick={() => setTeamBioOpen(false)}
-                className="mt-10 font-body text-sm text-neutral-400 hover:text-white transition-colors inline-flex items-center gap-2"
-              >
-                <span>←</span>
-                {tr.legal.backToHome}
-              </button>
             </div>
           </div>
-        </div>
-      </div>
+        </section>
       </PageEnter>
+
+      <GhislainBioDrawer
+        open={bioDrawerOpen}
+        onClose={() => setBioDrawerOpen(false)}
+        photo={ghislainPhoto}
+        name="Ghislain Bussière"
+        role={tr.about.role}
+        bioFull={tr.about.bioFull}
+        closeLabel={tr.about.close}
+      />
 
       <LausFooter lang={lang} />
     </div>

@@ -1,13 +1,16 @@
 import { useState, useCallback, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { type Lang, t } from '@/lib/i18n';
+import { getBaseUrl } from '@/lib/baseUrl';
 
-const base = import.meta.env.BASE_URL;
-const slides = [
-  { image: `${base}hero/hero-paris.png`, city: 'Paris' },
-  { image: `${base}hero/hero-london.png`, city: 'London' },
-  { image: `${base}hero/hero-frankfurt.png`, city: 'Frankfurt' },
-];
+const getSlides = () => {
+  const base = getBaseUrl();
+  return [
+    { image: `${base}/hero/hero-paris.png`, city: 'Paris' },
+    { image: `${base}/hero/hero-london.png`, city: 'London' },
+    { image: `${base}/hero/hero-frankfurt.png`, city: 'Frankfurt' },
+  ];
+};
 
 const AUTO_ADVANCE_MS = 9000;
 
@@ -16,15 +19,18 @@ interface HeroSliderProps {
 }
 
 export default function HeroSlider({ lang }: HeroSliderProps) {
+  const slides = getSlides();
   const [current, setCurrent] = useState(0);
   const tr = t(lang);
 
-  const next = useCallback(() => setCurrent((c) => (c + 1) % slides.length), []);
+  const next = useCallback(() => setCurrent((c) => (c + 1) % slides.length), [slides.length]);
 
   useEffect(() => {
     const timer = setInterval(next, AUTO_ADVANCE_MS);
     return () => clearInterval(timer);
   }, [next]);
+
+  const safeCurrent = slides.length ? Math.min(current, slides.length - 1) : 0;
 
   return (
     <section className="relative w-full h-screen overflow-hidden">
@@ -32,7 +38,7 @@ export default function HeroSlider({ lang }: HeroSliderProps) {
         <div
           key={slide.city}
           className="absolute inset-0 transition-opacity ease-in-out"
-          style={{ opacity: i === current ? 1 : 0, transitionDuration: '2s' }}
+          style={{ opacity: i === safeCurrent ? 1 : 0, transitionDuration: '2s' }}
         >
           <img
             src={slide.image}
