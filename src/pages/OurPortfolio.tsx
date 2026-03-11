@@ -25,16 +25,16 @@ const OurPortfolio = () => {
     <div className="min-h-screen bg-background">
       <LausNavbar lang={lang} onLangChange={setLang} variant="light" />
 
-      <PageEnter>
-        {/* Lien retour: même bloc que About / Activities (position exacte) */}
-        <section className="container-site pt-32 pb-20 md:pt-40 md:pb-28">
-          <Link to="/" className="font-body text-sm text-muted-foreground hover:text-foreground mb-10 inline-block">
-            ← {tr.legal.backToHome}
-          </Link>
-        </section>
+      {/* Lien retour : même structure que About/Activities/Contact pour alignement identique */}
+      <section className="container-site pt-32 pb-20 md:pt-40 md:pb-28">
+        <Link to="/" className="font-body text-sm text-muted-foreground hover:text-foreground mb-10 inline-block">
+          ← {tr.legal.backToHome}
+        </Link>
+      </section>
 
-        {/* Hero: image Paris en fond, désaturée + overlay, titre et stats par-dessus */}
-        <section className="relative min-h-[70vh] flex flex-col overflow-hidden">
+      <PageEnter>
+        {/* Hero : image + titre + stats */}
+        <section className="relative flex flex-col overflow-hidden">
           <div
             className="absolute inset-0 bg-cover bg-center grayscale brightness-95"
             style={{
@@ -44,9 +44,9 @@ const OurPortfolio = () => {
           />
           <div className="absolute inset-0 bg-white/70" aria-hidden />
           <div className="absolute inset-0 bg-background/30" aria-hidden />
-          <div className="relative z-10 container-site pt-12 pb-20 md:pt-16 md:pb-28">
+          <div className="relative z-10 container-site pt-6 pb-12 md:pb-16">
             <Reveal>
-              <h1 className="heading-display text-foreground mb-12 md:mb-16 text-center">
+              <h1 className="heading-display text-foreground mb-6 md:mb-8 text-center">
                 {tr.portfolio.title}
               </h1>
             </Reveal>
@@ -55,7 +55,7 @@ const OurPortfolio = () => {
                 {stats.map((stat, i) => (
                   <div
                     key={stat.label}
-                    className={`flex flex-col items-center sm:items-center text-center px-6 py-6 ${i > 0 ? 'sm:border-l border-border' : ''}`}
+                    className={`flex flex-col items-center sm:items-center text-center px-6 py-4 ${i > 0 ? 'sm:border-l border-border' : ''}`}
                   >
                     <p className="font-heading text-3xl sm:text-4xl lg:text-5xl font-semibold text-foreground tabular-nums">
                       <CountUpStat value={stat.value} />

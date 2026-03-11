@@ -13,6 +13,8 @@ import { IconHandsCircle, IconDiamond, IconHouse } from '@/components/icons/Abou
 const DRAWER_TRANSITION_MS = 300;
 
 /** Side Panel (drawer) : 90% mobile / 40% desktop, slide depuis la droite, backdrop au clic ferme. */
+const LINKEDIN_URL = 'https://www.linkedin.com/in/ghislain-bussiere/';
+
 function GhislainBioDrawer({
   open,
   onClose,
@@ -21,6 +23,7 @@ function GhislainBioDrawer({
   role,
   bioFull,
   closeLabel,
+  linkedinLabel,
 }: {
   open: boolean;
   onClose: () => void;
@@ -29,6 +32,7 @@ function GhislainBioDrawer({
   role: string;
   bioFull: string;
   closeLabel: string;
+  linkedinLabel: string;
 }) {
   const [slidIn, setSlidIn] = useState(false);
   const [isClosing, setIsClosing] = useState(false);
@@ -96,7 +100,7 @@ function GhislainBioDrawer({
             </button>
           </div>
           <div className="flex justify-center px-6 pb-4">
-            <div className="w-32 h-32 md:w-40 md:h-40 rounded-full overflow-hidden border-4 border-muted shadow-lg">
+            <div className="w-full max-w-[240px] aspect-[3/4] overflow-hidden">
               <img src={photo} alt={name} className="w-full h-full object-cover object-top" />
             </div>
           </div>
@@ -108,6 +112,17 @@ function GhislainBioDrawer({
             <p className="font-body text-base text-foreground leading-relaxed whitespace-pre-line">
               {bioFull}
             </p>
+            <a
+              href={LINKEDIN_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 mt-6 font-body text-sm font-medium text-black hover:underline underline-offset-2"
+            >
+              <svg className="w-5 h-5" viewBox="0 0 24 24" fill="currentColor" aria-hidden>
+                <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+              </svg>
+              {linkedinLabel}
+            </a>
           </div>
         </div>
       </aside>
@@ -243,10 +258,21 @@ const About = () => {
                     <p className="font-body text-base text-foreground leading-relaxed group-hover:text-primary transition-colors">
                       {tr.about.bio}
                     </p>
-                    <span className="inline-block mt-3 font-body text-sm font-medium text-primary underline underline-offset-2">
+                    <span className="inline-block mt-3 font-body text-sm font-medium text-black underline underline-offset-2">
                       {tr.about.findOutMore}
                     </span>
                   </button>
+                  <a
+                    href={LINKEDIN_URL}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-2 mt-4 font-body text-sm font-medium text-black hover:underline underline-offset-2"
+                  >
+                    <svg className="w-5 h-5" viewBox="0 0 24 24" fill="currentColor" aria-hidden>
+                      <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+                    </svg>
+                    {tr.about.linkedin}
+                  </a>
                 </Reveal>
               </div>
             </div>
@@ -262,6 +288,7 @@ const About = () => {
         role={tr.about.role}
         bioFull={tr.about.bioFull}
         closeLabel={tr.about.close}
+        linkedinLabel={tr.about.linkedin}
       />
 
       <LausFooter lang={lang} />
