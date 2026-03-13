@@ -40,7 +40,7 @@ const Activities = () => {
           <h1 className="heading-display mb-8 text-center">{tr.activities.title}</h1>
         </Reveal>
         <Reveal delayMs={80}>
-          <p className="font-body text-base md:text-lg text-foreground leading-relaxed max-w-2xl mx-auto text-center">
+          <p className="font-body text-lg md:text-xl text-foreground leading-relaxed max-w-2xl mx-auto text-center">
             {tr.activities.pageIntro}
           </p>
         </Reveal>

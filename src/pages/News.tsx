@@ -16,18 +16,21 @@ const News = () => {
   const tr = t(lang);
 
   return (
-    <div className="min-h-screen bg-background flex flex-col">
+    <div className="min-h-screen bg-background">
       <LausNavbar lang={lang} onLangChange={setLang} variant="light" />
 
-      <main className="flex-1 container-site" style={{ paddingTop: 'calc(80px + var(--section-spacing-tight))', paddingBottom: 'var(--section-spacing)' }}>
-        <PageEnter>
-          <Link to="/" className="font-body text-sm text-muted-foreground hover:text-foreground mb-8 inline-block">
+      <PageEnter>
+        {/* Même structure que Activities : lien + titre pour position identique */}
+        <section className="container-site pt-32 pb-20 md:pt-40 md:pb-28">
+          <Link to="/" className="font-body text-sm text-muted-foreground hover:text-foreground mb-10 inline-block">
             ← {tr.legal.backToHome}
           </Link>
-
           <Reveal>
-            <h1 className="heading-display mb-12">{tr.news.title}</h1>
+            <h1 className="heading-display mb-8 text-center">{tr.news.title}</h1>
           </Reveal>
+        </section>
+
+        <main className="container-site" style={{ paddingBottom: 'var(--section-spacing)' }}>
 
           {newsItems.length === 0 ? (
             <Reveal>
@@ -60,8 +63,8 @@ const News = () => {
               ))}
             </div>
           )}
-        </PageEnter>
-      </main>
+        </main>
+      </PageEnter>
 
       <LausFooter lang={lang} />
     </div>

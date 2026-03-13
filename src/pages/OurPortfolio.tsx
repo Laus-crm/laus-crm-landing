@@ -22,36 +22,33 @@ const OurPortfolio = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen">
+      {/* Image fixe : reste en place au scroll, visible uniquement sous le contenu (header/footer en fond blanc) */}
+      <div
+        className="fixed inset-0 z-0 bg-cover bg-center bg-no-repeat grayscale brightness-95"
+        style={{ backgroundImage: `url(${parisPortfolio})` }}
+        aria-hidden
+      />
+      <div className="fixed inset-0 z-0 bg-white/70" aria-hidden />
+      <div className="fixed inset-0 z-0 bg-background/30" aria-hidden />
+
       <LausNavbar lang={lang} onLangChange={setLang} variant="light" />
 
-      {/* Lien retour : même structure que About/Activities/Contact pour alignement identique */}
-      <section className="container-site pt-32 pb-20 md:pt-40 md:pb-28">
-        <Link to="/" className="font-body text-sm text-muted-foreground hover:text-foreground mb-10 inline-block">
-          ← {tr.legal.backToHome}
-        </Link>
-      </section>
-
-      <PageEnter>
-        {/* Hero : image + titre + stats */}
-        <section className="relative flex flex-col overflow-hidden">
-          <div
-            className="absolute inset-0 bg-cover bg-center grayscale brightness-95"
-            style={{
-              backgroundImage: `url(${parisPortfolio})`,
-            }}
-            aria-hidden
-          />
-          <div className="absolute inset-0 bg-white/70" aria-hidden />
-          <div className="absolute inset-0 bg-background/30" aria-hidden />
-          <div className="relative z-10 container-site pt-6 pb-12 md:pb-16">
-            <Reveal>
-              <h1 className="heading-display text-foreground mb-6 md:mb-8 text-center">
-                {tr.portfolio.title}
-              </h1>
-            </Reveal>
+      {/* Contenu scrollable au-dessus de l'image fixe */}
+      <div className="relative z-10">
+        <PageEnter>
+          {/* Même structure que About : lien + titre dans la même section pour position identique */}
+          <section className="container-site pt-32 pb-20 md:pt-40 md:pb-28">
+            <Link to="/" className="font-body text-sm text-muted-foreground hover:text-foreground mb-10 inline-block">
+              ← {tr.legal.backToHome}
+            </Link>
+            <div className="flex flex-col items-center justify-center max-w-2xl mx-auto">
+              <Reveal>
+                <h1 className="heading-display mb-10 text-center">{tr.portfolio.title}</h1>
+              </Reveal>
+            </div>
             <Reveal delayMs={80}>
-              <div className="grid grid-cols-1 sm:grid-cols-3 gap-0 max-w-4xl mx-auto">
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-0 max-w-4xl mx-auto mt-8">
                 {stats.map((stat, i) => (
                   <div
                     key={stat.label}
@@ -67,22 +64,25 @@ const OurPortfolio = () => {
                 ))}
               </div>
             </Reveal>
-          </div>
-        </section>
+          </section>
 
-        {/* Intro texte sous le hero (pageIntro) */}
-        <section className="container-site py-16 md:py-20">
-          <div className="max-w-3xl mx-auto">
-            <Reveal>
-              <p className="font-body text-lg text-foreground leading-relaxed">
-                {tr.portfolio.pageIntro}
-              </p>
-            </Reveal>
-          </div>
-        </section>
-      </PageEnter>
+          {/* Intro texte sous le hero (pageIntro) */}
+          <section className="container-site py-16 md:py-20">
+            <div className="max-w-3xl mx-auto">
+              <Reveal>
+                <p className="font-body text-lg md:text-xl text-foreground leading-relaxed">
+                  {tr.portfolio.pageIntro}
+                </p>
+              </Reveal>
+            </div>
+          </section>
+        </PageEnter>
+      </div>
 
-      <LausFooter lang={lang} />
+      {/* Footer avec fond blanc pour couvrir l'image en bas */}
+      <div className="relative z-10 bg-background">
+        <LausFooter lang={lang} />
+      </div>
     </div>
   );
 };

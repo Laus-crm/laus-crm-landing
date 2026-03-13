@@ -174,12 +174,12 @@ const About = () => {
             </Reveal>
             <div className="space-y-6 text-center w-full">
               <Reveal delayMs={80}>
-                <p className="font-body text-base text-foreground leading-relaxed">
+                <p className="font-body text-lg text-foreground leading-relaxed">
                   {tr.about.intro1}
                 </p>
               </Reveal>
               <Reveal delayMs={120}>
-                <p className="font-body text-base text-foreground leading-relaxed">
+                <p className="font-body text-lg text-foreground leading-relaxed">
                   {tr.about.intro2}
                 </p>
               </Reveal>

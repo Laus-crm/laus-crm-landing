@@ -85,7 +85,7 @@ const translations = {
     },
     contact: {
       pageTitle: 'Contact',
-      city: 'Le siège',
+      city: 'Contact',
       headquarter: 'Siège',
       addressLine: '15 Rue Pétrarque\n75116 Paris, France',
       phone: '+33 (0) 6 84 07 82 93',
@@ -209,7 +209,7 @@ const translations = {
     },
     contact: {
       pageTitle: 'Contact',
-      city: 'Headquarters',
+      city: 'Contact',
       headquarter: 'Headquarter',
       addressLine: '15 Rue Pétrarque\n75116 Paris, France',
       phone: '+33 (0) 6 84 07 82 93',
