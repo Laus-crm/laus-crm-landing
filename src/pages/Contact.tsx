@@ -73,35 +73,8 @@ const Contact = () => {
           <Reveal>
             <h1 className="heading-display mb-8 text-center">{tr.contact.city}</h1>
           </Reveal>
-          <PageEnter>
-            <div className="max-w-md mx-auto mb-12 md:mb-16 text-center">
-              <div className="font-body text-base text-foreground leading-relaxed whitespace-pre-line">
-                {tr.contact.addressLine}
-              </div>
-              <Reveal delayMs={160}>
-                <p className="font-body text-base text-foreground mt-4">
-                  <a href={`tel:${tr.contact.phone.replace(/\s/g, '').replace('(0)', '')}`} className="hover:text-primary transition-colors">
-                    {tr.contact.phone}
-                  </a>
-                </p>
-              </Reveal>
-              <Reveal delayMs={200}>
-                <p className="font-body text-base text-foreground mt-1">
-                  <a href={`mailto:${tr.contact.email}`} className="text-foreground hover:underline">
-                    {tr.contact.email}
-                  </a>
-                </p>
-              </Reveal>
-            </div>
-          </PageEnter>
-
           {/* Formulaire de contact (sur l'image) */}
           <div className="max-w-lg mx-auto">
-          <Reveal>
-            <h2 className="heading-section text-center mb-10 text-2xl md:text-3xl">
-              {tr.contact.formTitle}
-            </h2>
-          </Reveal>
           {submitStatus === 'success' && (
             <div className="mb-6 p-4 border border-border bg-primary/5 text-primary font-body text-sm text-center">
               {tr.contact.successMessage}
@@ -156,6 +129,18 @@ const Contact = () => {
                   type="email"
                   required
                   placeholder={tr.contact.emailField}
+                  className="font-body rounded-none border-border focus-visible:ring-primary"
+                />
+              </div>
+              <div className="space-y-2">
+                <Label htmlFor="company" className="font-body text-sm text-muted-foreground">
+                  {tr.contact.companyName}
+                </Label>
+                <Input
+                  id="company"
+                  name="company"
+                  type="text"
+                  placeholder={tr.contact.companyName}
                   className="font-body rounded-none border-border focus-visible:ring-primary"
                 />
               </div>

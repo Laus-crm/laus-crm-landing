@@ -18,9 +18,9 @@ const translations = {
     },
     about: {
       title: 'Qui sommes-nous',
-      intro1: 'Nous accompagnons nos partenaires sur l\'ensemble du cycle de vie des actifs immobiliers, de l\'acquisition et du repositionnement à la valorisation et à la sortie stratégique.',
+      intro1: 'Nous sommes une société de conseil et de gestion intervenant, pour le compte de ses clients, sur l\'ensemble des enjeux liés au cycle de vie des actifs immobiliers hôteliers et commerciaux. Nous accompagnons nos clients en tant que partenaire de confiance dans la gestion stratégique, opérationnelle et quotidienne de leurs actifs. Faire confiance à LAUS Asset Management, c\'est s\'appuyer sur une équipe d\'experts de la gestion et de l\'investissement immobilier, opérant à l\'échelle française et européenne.',
       intro2: 'En nous appuyant sur une compréhension approfondie des leviers de valeur des actifs hôteliers et immobiliers, ainsi que des dynamiques financières qui influencent leur performance, nous agissons en partenaire de confiance pour maximiser la création de valeur à long terme.',
-      overviewTitle: 'Vue d\'ensemble',
+      overviewTitle: 'Classes d\'actifs',
       overview1Value: '€300 millions',
       overview1Label: 'Actifs acquis / cédés',
       overview1Sub: '+7 actifs',
@@ -30,9 +30,14 @@ const translations = {
       overview3Value: '€1,0 Md',
       overview3Label: 'Actifs valorisés',
       overview3Sub: '(hôtels, bureaux, logistique)',
+      assetClassCity: 'Hôtel & Hostel en\ncentre ville et/ou\npériphérie',
+      assetClassSea: 'Hôtel au bord\nde la mer',
+      assetClassMountain: 'Hôtel à la\nmontagne',
+      assetClassOffice: 'Bureau',
+      assetClassLogistics: 'Logistique',
       teamTitle: 'Notre équipe',
-      bio: 'Fondateur et directeur de LAUS Asset Management, Ghislain Bussière s\'appuie sur plus de 6 ans d\'expérience en immobilier et hôtellerie. Son expertise couvre l\'asset management, les transactions et le conseil stratégique.',
-      bioFull: 'Ghislain est le directeur de LAUS Asset Management, une société spécialisée dans l\'asset management et les transactions d\'hôtels et d\'actifs immobiliers en Europe.\n\nAvec plus de 6 ans d\'expérience en asset management immobilier (hôtellerie, bureaux, logistique) et en transactions (hôtellerie et bureaux), Ghislain a occupé des postes chez BNP REIM, Cushman & Wakefield et Feuring Hotel Consulting GmbH, où il a réalisé des transactions et géré des portefeuilles multi-milliardaires sur les actifs hôteliers, bureaux et logistique.\n\nIl est titulaire d\'un Bachelor en Hospitality Management du Glion Institute of Higher Education et d\'un Master en Immobilier et Finance de la Sorbonne.',
+      bio: 'Fondateur et directeur de LAUS Asset Management, Ghislain Bussière s\'appuie sur plus de 6 ans d\'expérience dans le domaine de l\'hôtellerie et l\'immobilier commercial. Son expertise couvre l\'asset management, l\'investissement et le conseil stratégique.',
+      bioFull: 'Ghislain est le directeur de LAUS Asset Management, société spécialisée dans l\'asset management et l\'investissement immobilier commercial en France et en Europe.\nFort de plus de 6 ans d\'expérience en asset management, investissement et conseil, il a occupé des fonctions au sein d\'acteurs de référence tels que BNP REIM, Cushman & Wakefield et Feuring Hotel Consulting GmbH.\nAu cours de sa carrière, il a co-piloté des portefeuilles hôteliers en Europe pour le compte d\'investisseurs allemands et omanais (AUM : 300 M€), ainsi qu\'un portefeuille de bureaux et d\'actifs logistiques pour une SCPI (AUM : +1 Md€).\nIl est également intervenu sur de nombreuses opérations d\'investissement et d\'arbitrage, notamment :\n• acquisition d\'un portefeuille de deux actifs hôteliers en Italie (Milan et Venise),\n• accompagnement en buy-side pour l\'acquisition d\'un hôtel 5 étoiles à Paris,\n• cession de plusieurs hôtels et résidences hôtelières en France (Paris, Marseille, Lille, Cannes, Nice, Courchevel 1850),\n• cession d\'actifs de bureaux à Paris,\n• recherche et sélection d\'opérateurs hôteliers,\n• réalisation d\'études de faisabilité pour le compte de développeurs,\n• structuration et négociation de baux commerciaux, contrats de management (HMA), contrats de location-gérance et contrats de franchise',
       experience: 'Parcours professionnel : BNP Paribas Real Estate Investment Management, Cushman & Wakefield, Feuring Hotel Consulting.',
       education: 'Formation : Glion Institute of Higher Education & Université Paris 1 Panthéon-Sorbonne.',
       role: 'Fondateur & Directeur',
@@ -42,23 +47,23 @@ const translations = {
     },
     activities: {
       title: 'Nos Activités',
-      pageIntro: 'Nous accompagnons nos partenaires en gestion et en transactions immobilières. Hôtellerie, bureaux, logistique : nous intervenons sur l\'ensemble des classes d\'actifs.',
+      pageIntro: 'Nous accompagnons investisseurs et propriétaires à chaque étape de la vie de leurs actifs, du conseil stratégique à la gestion opérationnelle, jusqu\'aux opérations d\'acquisition et de cession. Hôtellerie, bureaux, logistique : une expertise transversale au service de la création de valeur.',
       cta: 'Voir nos activités',
       segmentsLabel: 'Domaines',
       advise: {
         title: 'ADVISE',
-        segment: 'Conseil & contrats de gestion',
-        content: 'Conseil stratégique en rénovation hôtelière, études de faisabilité, et négociation de contrats de gestion (HMA), franchises et baux commerciaux. Nous accompagnons nos clients dans chaque étape de la valorisation de leurs actifs.',
+        segment: 'Conseil & structuration',
+        content: 'Structuration et négociation des contrats hôteliers et immobiliers : contrats de management (HMA), baux commerciaux, contrats de franchise et de location-gérance.\nRéalisation d’études de faisabilité dans le cadre de projets de développement ou de transformation d’actifs.\nRecherche et sélection d’opérateurs hôteliers pour des actifs vacants ou en repositionnement.\nValorisation des actifs hôteliers et immobiliers pour le compte de propriétaires en vue d’une potentielle future vente.',
       },
       manage: {
         title: 'MANAGE',
-        segment: 'Gestion d\'actifs opérationnelle',
-        content: 'Asset management opérationnel pour extraire le plein potentiel de chaque actif. Suivi de la performance, optimisation des revenus, contrôle des coûts et reporting détaillé pour maximiser la création de valeur.',
+        segment: 'Gestion d’actifs',
+        content: 'Gestion active d’actifs pour le compte de propriétaires et d’investisseurs, avec mise en place de plans de capex et pilotage de leur exécution.\nOptimisation de la performance via la structuration de stratégies de revenue management.\nOptimisation et maîtrise des coûts opérationnels, déploiement de stratégies digitales (web, SEO) et marketing.\nSuivi opérationnel quotidien des actifs.\nMise en place d’un système de reporting afin d’assurer un suivi régulier des performances auprès du propriétaire.',
       },
       transact: {
         title: 'TRANSACT',
         segment: 'Acquisition & cession',
-        content: 'Services sur mesure d\'acquisition et de cession d\'actifs hôteliers et immobiliers commerciaux. Identification d\'opportunités, due diligence, structuration et exécution de transactions.',
+        content: 'Buy-side : recherche d’opportunités d’investissement, analyse approfondie des actifs et accompagnement jusqu’à la signature.\nSell-side : gestion complète des processus de cession, notamment sur la préparation des data rooms, la rédaction des documents de commercialisation (IM), l’identification et la sélection des investisseurs, la structuration des opérations (asset deal / share deal) et le pilotage des négociations.\nAccompagnement des propriétaires dans l’optimisation des conditions de sortie, au bon moment, avec le bon format et au meilleur prix.',
       },
     },
     portfolio: {
@@ -66,11 +71,11 @@ const translations = {
       stat1: '€300M',
       stat1Label: 'Actifs acquis/cédés',
       stat2: '+€250M',
-      stat2Label: 'AUM (Actifs sous gestion)',
+      stat2Label: 'AUM (hôtellerie)',
       stat3: '+€1.0Md',
       stat3Label: 'Actifs valorisés',
       cta: 'En savoir plus',
-      pageIntro: 'Avant LAUS Asset Management, notre équipe a géré plus de 7 hôtels en Europe, plus de €250 millions d\'actifs hôteliers sous gestion et a valorisé plus de €1 milliard d\'actifs (hôtels, bureaux, logistique).',
+      pageIntro: 'Avant la création de LAUS Asset Management, notre équipe a co-piloté un portefeuille hôtelier en Europe pour le compte d’investisseurs allemands et omanais (AUM : 300 M€), ainsi qu’un portefeuille de bureaux et d’actifs logistiques pour une SCPI (AUM : +1 Md€).',
       imageAlt: 'Immobilier Paris',
     },
     news: {
@@ -94,7 +99,8 @@ const translations = {
       firstName: 'Prénom',
       lastName: 'Nom',
       emailField: 'E-mail',
-      position: 'Position de l\'entreprise',
+      companyName: 'Nom de l\'entreprise',
+      position: 'Poste dans l\'entreprise',
       message: 'Message',
       submit: 'Envoyer',
       sending: 'Envoi en cours…',
@@ -154,6 +160,11 @@ const translations = {
       overview3Value: '€1.0 bn',
       overview3Label: 'Assets Valued',
       overview3Sub: 'Hotels, Office, Logistics',
+      assetClassCity: 'City-center and/or\nsuburban Hotel & Hostel',
+      assetClassSea: 'Seaside\nHotel',
+      assetClassMountain: 'Mountain\nHotel',
+      assetClassOffice: 'Office',
+      assetClassLogistics: 'Logistics',
       teamTitle: 'The Team',
       bio: 'Ghislain Bussière is the founder and director of LAUS Asset Management. With over 6 years of experience in real estate and hospitality, he has developed recognized expertise in asset management, transactions, and strategic advisory.',
       bioFull: 'Ghislain is the Director of LAUS Asset Management, a company specializing in the asset management and transaction of hotels and real estate assets across Europe.\n\nWith over 6 years of experience in real estate asset management (hospitality, office, and logistics) and transactions (hospitality and office), Ghislain has held roles at BNP REIM, Cushman & Wakefield, and Feuring Hotel Consulting GmbH, where he executed transactions and managed multi-billion-euro portfolios across hotel, office, and logistics assets.\n\nHe holds a Bachelor\'s degree in Hospitality Management from Glion Institute of Higher Education and a Master\'s degree in Real Estate and Finance from La Sorbonne.',
@@ -166,7 +177,7 @@ const translations = {
     },
     activities: {
       title: 'Our Activities',
-      pageIntro: 'We asset manage and transact real estate assets on behalf of our partners. We cover every asset class, from hospitality to office to logistics.',
+      pageIntro: 'We support clients at every stage of the real estate asset lifecycle, from acquisition to renovation, then to active management, through to strategic divestment. We advise on structuring, contract negotiation, feasibility studies, operator selection, and the setup and structuring of financing solutions.',
       cta: 'View our activities',
       segmentsLabel: 'Key areas',
       advise: {
@@ -218,6 +229,7 @@ const translations = {
       firstName: 'First name',
       lastName: 'Last name',
       emailField: 'Email',
+      companyName: 'Company name',
       position: 'Company position',
       message: 'Message',
       submit: 'Send',
@@ -254,3 +266,9 @@ const translations = {
 export function t(lang: Lang) {
   return translations[lang];
 }
+
+
+
+
+
+

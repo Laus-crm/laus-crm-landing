@@ -5,10 +5,13 @@ import LausNavbar from '@/components/LausNavbar';
 import LausFooter from '@/components/LausFooter';
 import PageEnter from '@/components/PageEnter';
 import Reveal from '@/components/Reveal';
-import CountUpWhenVisible from '@/components/CountUpWhenVisible';
 import { useState, useEffect } from 'react';
 import ghislainPhoto from '@/assets/ghislain-bussiere.png';
-import { IconHandsCircle, IconDiamond, IconHouse } from '@/components/icons/AboutValuesIcons';
+import assetClass1 from '@/assets/asset-classes/1.jpg';
+import assetClass2 from '@/assets/asset-classes/2.jpg';
+import assetClass3 from '@/assets/asset-classes/3.jpg';
+import assetClass4 from '@/assets/asset-classes/4.jpg';
+import assetClass5 from '@/assets/asset-classes/5.jpg';
 
 const DRAWER_TRANSITION_MS = 300;
 
@@ -80,7 +83,7 @@ function GhislainBioDrawer({
         aria-label={closeLabel}
       />
       <aside
-        className="fixed top-0 right-0 z-[100] h-full w-[90%] md:w-[40%] max-w-lg bg-background shadow-xl flex flex-col transition-transform duration-300 ease-out"
+        className="fixed top-0 right-0 z-[100] h-full w-[94%] md:w-[56%] max-w-[760px] bg-background shadow-xl flex flex-col transition-transform duration-300 ease-out"
         style={{ transform: panelTransform }}
         role="dialog"
         aria-modal="true"
@@ -137,26 +140,95 @@ const About = () => {
   const [bioDrawerOpen, setBioDrawerOpen] = useState(false);
   const tr = t(lang);
 
-  const overviewItems = [
-    {
-      icon: IconHandsCircle,
-      value: tr.about.overview1Value,
-      label: tr.about.overview1Label,
-      sub: tr.about.overview1Sub,
-    },
-    {
-      icon: IconDiamond,
-      value: tr.about.overview2Value,
-      label: tr.about.overview2Label,
-      sub: tr.about.overview2Sub,
-    },
-    {
-      icon: IconHouse,
-      value: tr.about.overview3Value,
-      label: tr.about.overview3Label,
-      sub: tr.about.overview3Sub,
-    },
+  const assetClasses = [
+    { image: assetClass1, label: tr.about.assetClassCity },
+    { image: assetClass2, label: tr.about.assetClassSea },
+    { image: assetClass3, label: tr.about.assetClassMountain },
+    { image: assetClass4, label: tr.about.assetClassOffice },
+    { image: assetClass5, label: tr.about.assetClassLogistics },
   ];
+  const expertsTitle = lang === 'fr'
+    ? 'Un ecosysteme d\'experts au service de vos projets:'
+    : 'An ecosystem of experts supporting your projects:';
+  const expertsGroups = lang === 'fr'
+    ? [
+        {
+          title: 'Finance & gestion',
+          icon: '💰',
+          items: [
+            'Capital & financement bancaire',
+            'Revenue management',
+            'Expert-comptable',
+          ],
+        },
+        {
+          title: 'Conception & realisation',
+          icon: '🏗️',
+          items: [
+            'Architecte',
+            'Architecte d\'interieur',
+            'Bureau d\'etudes techniques',
+            'Entreprise de travaux',
+            'Assistance a maitrise d\'ouvrage (AMO)',
+          ],
+        },
+        {
+          title: 'Juridique',
+          icon: '⚖️',
+          items: [
+            'Avocat en droit des affaires',
+            'Avocat en droit immobilier',
+            'Notaire',
+          ],
+        },
+        {
+          title: 'Digital & commercial',
+          icon: '🌐',
+          items: [
+            'Acquisition digitale & visibilite',
+            'Strategie commerciale & marketing',
+          ],
+        },
+      ]
+    : [
+        {
+          title: 'Finance & management',
+          icon: '💰',
+          items: [
+            'Capital & bank financing',
+            'Revenue management',
+            'Chartered accountant',
+          ],
+        },
+        {
+          title: 'Design & delivery',
+          icon: '🏗️',
+          items: [
+            'Architect',
+            'Interior architect',
+            'Technical engineering office',
+            'Construction company',
+            'Project management assistance (AMO)',
+          ],
+        },
+        {
+          title: 'Legal',
+          icon: '⚖️',
+          items: [
+            'Business lawyer',
+            'Real estate lawyer',
+            'Notary',
+          ],
+        },
+        {
+          title: 'Digital & commercial',
+          icon: '🌐',
+          items: [
+            'Digital acquisition & visibility',
+            'Commercial strategy & marketing',
+          ],
+        },
+      ];
 
   return (
     <div className="bg-background">
@@ -187,28 +259,22 @@ const About = () => {
           </div>
         </section>
 
-        {/* Section 2: Overview (3 valeurs) */}
+        {/* Section 2: Classes d'actifs */}
         <section className="flex flex-col items-center justify-center px-6 py-12" style={{ paddingTop: 'var(--section-spacing-tight)', paddingBottom: 'var(--section-spacing-tight)' }}>
           <Reveal>
             <h2 className="heading-display mb-10 text-center">
               {tr.about.overviewTitle}
             </h2>
           </Reveal>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-10 md:gap-12 max-w-4xl mx-auto w-full">
-            {overviewItems.map((item, index) => (
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-6 max-w-6xl mx-auto w-full">
+            {assetClasses.map((item, index) => (
               <Reveal key={item.label} delayMs={80 + index * 60}>
                 <div className="flex flex-col items-center text-center">
-                  <div className="flex items-center justify-center w-14 h-14 rounded border border-border text-foreground mb-5">
-                    <item.icon className="w-8 h-8" />
+                  <div className="w-full aspect-[4/3] overflow-hidden border border-border bg-background">
+                    <img src={item.image} alt={item.label} className="w-full h-full object-cover" />
                   </div>
-                  <p className="font-heading text-4xl font-semibold text-foreground">
-                    <CountUpWhenVisible value={item.value} />
-                  </p>
-                  <p className="font-body text-base text-muted-foreground mt-2">
+                  <p className="font-body text-base text-foreground mt-3 whitespace-pre-line">
                     {item.label}
-                  </p>
-                  <p className="font-body text-sm text-muted-foreground mt-1">
-                    {item.sub}
                   </p>
                 </div>
               </Reveal>
@@ -232,7 +298,7 @@ const About = () => {
                 <button
                   type="button"
                   onClick={() => setBioDrawerOpen(true)}
-                  className="w-full max-w-xs aspect-[3/4] overflow-hidden rounded-sm border-0 bg-transparent p-0 cursor-pointer text-left focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2"
+                  className="w-full max-w-[240px] md:max-w-[220px] aspect-[3/4] overflow-hidden rounded-sm border-0 bg-transparent p-0 cursor-pointer text-left focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2"
                   aria-label={tr.about.findOutMore}
                 >
                   <img
@@ -276,6 +342,37 @@ const About = () => {
                 </Reveal>
               </div>
             </div>
+          </div>
+        </section>
+
+        <section
+          className="container-site"
+          style={{ paddingTop: 'var(--section-spacing-tight)', paddingBottom: 'var(--section-spacing)' }}
+        >
+          <Reveal>
+            <h3 className="heading-section text-foreground mb-10 text-center text-3xl md:text-4xl">
+              {expertsTitle}
+            </h3>
+          </Reveal>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8 max-w-5xl mx-auto">
+            {expertsGroups.map((group, index) => (
+              <Reveal key={group.title} delayMs={80 + index * 60}>
+                <div className="border border-border bg-background p-6 md:p-7">
+                  <h4 className="font-heading text-2xl md:text-3xl font-semibold leading-tight text-foreground">
+                    <span className="mr-2">{group.icon}</span>
+                    {group.title}
+                  </h4>
+                  <ul className="mt-4 space-y-2">
+                    {group.items.map((item) => (
+                      <li key={item} className="font-body text-base md:text-lg text-foreground/90 leading-snug pl-4 relative">
+                        <span className="absolute left-0 top-0.5 text-muted-foreground">•</span>
+                        {item}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </Reveal>
+            ))}
           </div>
         </section>
       </PageEnter>

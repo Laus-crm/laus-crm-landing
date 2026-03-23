@@ -51,8 +51,8 @@ export default function HeroSlider({ lang }: HeroSliderProps) {
         </div>
       ))}
 
-      <div className="absolute bottom-[20%] left-8 md:left-16 max-w-4xl z-10 font-body animate-in fade-in-0 slide-in-from-bottom-6 duration-700">
-            <h1 className="flex flex-wrap text-[1.6rem] md:text-[2rem] font-semibold text-primary-foreground leading-tight tracking-wide">
+      <div className="absolute bottom-[20%] left-8 md:left-16 max-w-5xl z-10 font-body animate-in fade-in-0 slide-in-from-bottom-6 duration-700">
+            <h1 className="flex flex-wrap text-[1.9rem] md:text-[2.4rem] font-semibold text-primary-foreground leading-tight tracking-wide max-w-[1000px]">
               {tr.hero.tagline}
             </h1>
             <Link
