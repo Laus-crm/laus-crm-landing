@@ -8,6 +8,7 @@ import Reveal from '@/components/Reveal';
 import { useState, useEffect } from 'react';
 import ghislainPhoto from '@/assets/ghislain-bussiere.png';
 import assetClass1 from '@/assets/asset-classes/1.jpg';
+import assetClassHostel from '@/assets/asset-classes/6.jpg';
 import assetClass2 from '@/assets/asset-classes/2.jpg';
 import assetClass3 from '@/assets/asset-classes/3.jpg';
 import assetClass4 from '@/assets/asset-classes/4.jpg';
@@ -83,7 +84,7 @@ function GhislainBioDrawer({
         aria-label={closeLabel}
       />
       <aside
-        className="fixed top-0 right-0 z-[100] h-full w-[94%] md:w-[56%] max-w-[760px] bg-background shadow-xl flex flex-col transition-transform duration-300 ease-out"
+        className="fixed top-0 right-0 z-[100] h-full w-[94%] md:w-[50%] max-w-[680px] bg-background shadow-xl flex flex-col transition-transform duration-300 ease-out"
         style={{ transform: panelTransform }}
         role="dialog"
         aria-modal="true"
@@ -112,9 +113,11 @@ function GhislainBioDrawer({
             <p className="font-body text-sm font-medium uppercase tracking-wider text-muted-foreground mt-1">{role}</p>
           </div>
           <div className="px-6 pb-10">
-            <p className="font-body text-base text-foreground leading-relaxed whitespace-pre-line">
+            <div className="mx-auto w-full max-w-prose">
+              <p className="font-body text-base text-foreground leading-relaxed whitespace-pre-line text-justify">
               {bioFull}
-            </p>
+              </p>
+            </div>
             <a
               href={LINKEDIN_URL}
               target="_blank"
@@ -142,6 +145,7 @@ const About = () => {
 
   const assetClasses = [
     { image: assetClass1, label: tr.about.assetClassCity },
+    { image: assetClassHostel, label: tr.about.assetClassHostel },
     { image: assetClass2, label: tr.about.assetClassSea },
     { image: assetClass3, label: tr.about.assetClassMountain },
     { image: assetClass4, label: tr.about.assetClassOffice },
@@ -156,20 +160,20 @@ const About = () => {
           title: 'Finance & gestion',
           icon: '💰',
           items: [
-            'Capital & financement bancaire',
+            'Capital & Financement bancaire',
             'Revenue management',
             'Expert-comptable',
           ],
         },
         {
-          title: 'Conception & realisation',
+          title: 'Conception & réalisation',
           icon: '🏗️',
           items: [
             'Architecte',
-            'Architecte d\'interieur',
-            'Bureau d\'etudes techniques',
+            'Architecte d’intérieur',
+            'Bureau d’études techniques',
             'Entreprise de travaux',
-            'Assistance a maitrise d\'ouvrage (AMO)',
+            'Assistant à maîtrise d\'ouvrage (AMO)',
           ],
         },
         {
@@ -185,8 +189,8 @@ const About = () => {
           title: 'Digital & commercial',
           icon: '🌐',
           items: [
-            'Acquisition digitale & visibilite',
-            'Strategie commerciale & marketing',
+            'Acquisition digitale & visibilité',
+            'Stratégie commerciale & marketing',
           ],
         },
       ]
@@ -244,14 +248,14 @@ const About = () => {
             <Reveal>
               <h1 className="heading-display mb-10 text-center">{tr.about.title}</h1>
             </Reveal>
-            <div className="space-y-6 text-center w-full">
+            <div className="space-y-6 w-full">
               <Reveal delayMs={80}>
-                <p className="font-body text-lg text-foreground leading-relaxed">
+                <p className="font-body text-lg text-foreground leading-relaxed text-justify">
                   {tr.about.intro1}
                 </p>
               </Reveal>
               <Reveal delayMs={120}>
-                <p className="font-body text-lg text-foreground leading-relaxed">
+                <p className="font-body text-lg text-foreground leading-relaxed text-justify">
                   {tr.about.intro2}
                 </p>
               </Reveal>
@@ -282,7 +286,7 @@ const About = () => {
           </div>
         </section>
 
-        {/* Section 3: The Team — clic sur photo ou texte ouvre le drawer (bio complète) */}
+        {/* Section 3: Notre équipe */}
         <section
           className="container-site"
           style={{ paddingTop: 'var(--section-spacing-tight)', paddingBottom: 'var(--section-spacing)' }}
@@ -292,87 +296,88 @@ const About = () => {
               {tr.about.teamTitle}
             </h2>
           </Reveal>
-          <div className="max-w-4xl mx-auto">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 items-start">
-              <Reveal delayMs={80} className="flex justify-center md:justify-end">
-                <button
-                  type="button"
-                  onClick={() => setBioDrawerOpen(true)}
-                  className="w-full max-w-[240px] md:max-w-[220px] aspect-[3/4] overflow-hidden rounded-sm border-0 bg-transparent p-0 cursor-pointer text-left focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2"
-                  aria-label={tr.about.findOutMore}
-                >
-                  <img
-                    src={ghislainPhoto}
-                    alt="Ghislain Bussière"
-                    className="w-full h-full object-cover object-top"
-                  />
-                </button>
-              </Reveal>
-              <div className="text-center md:text-left">
-                <Reveal delayMs={120}>
-                  <h3 className="font-heading text-2xl md:text-3xl font-semibold tracking-wide text-foreground mb-2">
-                    Ghislain Bussière
+          <div className="max-w-6xl mx-auto">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-14 items-stretch">
+              <div className="h-full">
+                <div className="flex flex-col sm:flex-row gap-8 items-center sm:items-start">
+                  <Reveal delayMs={80} className="flex-shrink-0">
+                    <button
+                      type="button"
+                      onClick={() => setBioDrawerOpen(true)}
+                      className="w-full max-w-[240px] aspect-[3/4] overflow-hidden rounded-sm border-0 bg-transparent p-0 cursor-pointer text-left focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2"
+                      aria-label={tr.about.findOutMore}
+                    >
+                      <img
+                        src={ghislainPhoto}
+                        alt="Ghislain Bussière"
+                        className="w-full h-full object-cover object-top"
+                      />
+                    </button>
+                  </Reveal>
+                  <div className="w-full max-w-[520px] text-center sm:text-left">
+                    <Reveal delayMs={120}>
+                      <h3 className="font-heading text-2xl md:text-3xl font-semibold tracking-wide text-foreground mb-2">
+                        Ghislain Bussière
+                      </h3>
+                      <p className="font-body text-xs font-medium uppercase tracking-[0.2em] text-muted-foreground mb-4">
+                        {tr.about.role}
+                      </p>
+                      <button
+                        type="button"
+                        onClick={() => setBioDrawerOpen(true)}
+                        className="text-left w-full group"
+                      >
+                        <p className="font-body text-base text-foreground leading-relaxed text-justify group-hover:text-primary transition-colors">
+                          {tr.about.bio}
+                        </p>
+                        <span className="inline-block mt-3 font-body text-sm font-medium text-black underline underline-offset-2">
+                          {tr.about.findOutMore}
+                        </span>
+                      </button>
+                      <a
+                        href={LINKEDIN_URL}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center gap-2 mt-4 font-body text-sm font-medium text-black hover:underline underline-offset-2"
+                      >
+                        <svg className="w-5 h-5" viewBox="0 0 24 24" fill="currentColor" aria-hidden>
+                          <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+                        </svg>
+                        {tr.about.linkedin}
+                      </a>
+                    </Reveal>
+                  </div>
+                </div>
+              </div>
+
+              <div className="h-full">
+                <Reveal delayMs={160}>
+                  <h3 className="heading-section text-foreground mb-6 text-center md:text-left text-3xl md:text-4xl">
+                    {expertsTitle}
                   </h3>
-                  <p className="font-body text-xs font-medium uppercase tracking-[0.2em] text-muted-foreground mb-4">
-                    {tr.about.role}
-                  </p>
-                  <button
-                    type="button"
-                    onClick={() => setBioDrawerOpen(true)}
-                    className="text-left w-full group"
-                  >
-                    <p className="font-body text-base text-foreground leading-relaxed group-hover:text-primary transition-colors">
-                      {tr.about.bio}
-                    </p>
-                    <span className="inline-block mt-3 font-body text-sm font-medium text-black underline underline-offset-2">
-                      {tr.about.findOutMore}
-                    </span>
-                  </button>
-                  <a
-                    href={LINKEDIN_URL}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center gap-2 mt-4 font-body text-sm font-medium text-black hover:underline underline-offset-2"
-                  >
-                    <svg className="w-5 h-5" viewBox="0 0 24 24" fill="currentColor" aria-hidden>
-                      <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
-                    </svg>
-                    {tr.about.linkedin}
-                  </a>
                 </Reveal>
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-10 gap-y-8">
+                  {expertsGroups.map((group, index) => (
+                    <Reveal key={group.title} delayMs={200 + index * 60}>
+                      <div>
+                        <h4 className="font-heading text-xl md:text-2xl font-semibold leading-tight text-foreground">
+                          <span className="mr-2">{group.icon}</span>
+                          {group.title}
+                        </h4>
+                        <ul className="mt-3 space-y-2">
+                          {group.items.map((item) => (
+                            <li key={item} className="font-body text-base text-foreground/90 leading-snug pl-4 relative">
+                              <span className="absolute left-0 top-0.5 text-muted-foreground">•</span>
+                              {item}
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+                    </Reveal>
+                  ))}
+                </div>
               </div>
             </div>
-          </div>
-        </section>
-
-        <section
-          className="container-site"
-          style={{ paddingTop: 'var(--section-spacing-tight)', paddingBottom: 'var(--section-spacing)' }}
-        >
-          <Reveal>
-            <h3 className="heading-section text-foreground mb-10 text-center text-3xl md:text-4xl">
-              {expertsTitle}
-            </h3>
-          </Reveal>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8 max-w-5xl mx-auto">
-            {expertsGroups.map((group, index) => (
-              <Reveal key={group.title} delayMs={80 + index * 60}>
-                <div className="border border-border bg-background p-6 md:p-7">
-                  <h4 className="font-heading text-2xl md:text-3xl font-semibold leading-tight text-foreground">
-                    <span className="mr-2">{group.icon}</span>
-                    {group.title}
-                  </h4>
-                  <ul className="mt-4 space-y-2">
-                    {group.items.map((item) => (
-                      <li key={item} className="font-body text-base md:text-lg text-foreground/90 leading-snug pl-4 relative">
-                        <span className="absolute left-0 top-0.5 text-muted-foreground">•</span>
-                        {item}
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              </Reveal>
-            ))}
           </div>
         </section>
       </PageEnter>

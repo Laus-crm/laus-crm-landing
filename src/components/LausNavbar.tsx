@@ -26,7 +26,7 @@ export default function LausNavbar({ lang, onLangChange }: NavbarProps) {
   const navItems = NAV_ITEMS(tr, lang);
 
   return (
-    <nav className="fixed top-0 left-0 right-0 z-50 flex items-center justify-between px-6 py-5 md:px-8 bg-white border-b border-border">
+    <nav className="fixed top-0 left-0 right-0 z-[200] isolate flex items-center justify-between px-6 py-5 md:px-8 bg-white border-b border-border">
       <Link to="/" className="flex items-stretch gap-1.5">
         <span className="flex items-center font-heading text-3xl font-semibold tracking-wide text-foreground">LAUS</span>
         <span className="flex items-center font-body text-xs font-medium uppercase tracking-[0.2em] leading-tight text-muted-foreground">

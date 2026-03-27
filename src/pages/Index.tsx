@@ -17,7 +17,6 @@ const Index = () => {
       <LausNavbar lang={lang} onLangChange={setLang} />
       <HeroSlider lang={lang} />
       <section id="activities" className="container-site" style={{ paddingTop: 'var(--section-spacing-tighter)', paddingBottom: 'var(--section-spacing-tighter)' }}>
-        <div className="section-divider mb-10" />
         <Reveal>
           <h2 className="heading-display mb-5">{tr.activities.title}</h2>
         </Reveal>

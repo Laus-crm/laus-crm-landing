@@ -60,7 +60,7 @@ const Contact = () => {
           aria-hidden
         />
         <div className="absolute inset-0 bg-background/75 backdrop-blur-[2px]" aria-hidden />
-        <div className="relative z-10">
+        <div className="relative z-20">
           <LausNavbar lang={lang} onLangChange={setLang} variant="light" />
         </div>
         <div className="relative z-10 w-full container-site pt-32 pb-20 md:pt-40 md:pb-28">
